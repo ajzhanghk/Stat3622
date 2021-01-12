@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>STAT3622 Data Visualization (Lecture 1)</title>
+    <meta charset="utf-8" />
+    <meta name="author" content=" Dr. Aijun Zhang  The University of Hong Kong" />
+    <meta name="date" content="2020-01-21" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="..\stat3622-style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# STAT3622 Data Visualization (Lecture 1)
+## Introduction to Data Science
+### <br>Dr. Aijun Zhang<br> The University of Hong Kong
+### 21 January 2020
+
+---
+
+
+
+
+# What's covered in this lecture?
+
+&lt;img style="float: right; width: 360px; padding:50px 100px 0 0;" src="DataScienceVennDiagram.png"&gt;
+
+
+- STAT3622 Course Outline  
+
+  - Course Objectives
+  - Tentative Contents  
+  - Assessments
+  - Refereces 
+  
+- RStudio and R Markdown
+
+
+- Introduction to Data Science   
+
+  - DS Job Market  
+  - DS Venn Diagram  
+  - DS Workflow  
+
+  
+---
+class: center, middle
+
+# 1. STAT3622 Course Outline
+
+
+---
+# Course Admin Information
+
+&lt;img src="LogoSaaSHKU.png" width="40%" style="display: block; margin: auto;" /&gt;
+ 
+- Instructor: Dr. Aijun Zhang
+
+  - Office: RR224  
+  - Email: ajzhang@hku.hk
+
+- Lecture Hours:
+
+  - Tuesday 1:30pm - 4:20pm (T5)  
+
+- Tutor: Mr. Yifeng Guo
+
+  - Office: RR114  
+  - Email: gyf9712@hku.hk
+
+---
+# Course Websites
+
+- http://stat3622.saas.hku.hk/  
+
+  * Weekly updates with various course materials 
+  
+  &lt;!-- * A public domain for also hosting your DataViz projects --&gt;
+
+ 
+
+- http://moodle.hku.hk/  
+
+  * Sync with lecture notes/assignments/etc
+
+  * Annoucements, reminders, and surveys 
+
+&lt;!-- - Rstudio server:  http://stat3622.saas.hku.hk:8787/ --&gt;
+
+
+
+---
+# Course Objectives
+
+- This course (as part of data science) will focus on statistical graphics and interactive data visualization, as well as their applications in real case studies. 
+
+- **Programming:** R (primary), Python, D3.js
+
+- **You will learn:**
+
+  - Choose the best chart that fits the data
+
+  - Communicate effectively using statistical graphics
+
+  - Create compelling visualization via programming tools
+
+- **Prerequisites:** STAT2602 (Probability &amp; Statistics II) or STAT3902 (Statistical Models)
+
+
+
+---
+# Tentative Contentes
+
+.pull-left[
+- Introduction to Data science 
+
+- Exploratory data analysis
+
+- Data manipulation
+
+- Hans Rosling's Bubbles
+
+- Interactive data visualization
+
+- Shiny
+
+- Web scrapping
+
+- Dynamic documentation
+
+- Big data visualization
+
+]
+
+.pull-right[
+1. Statisticla Graphics  
+  * R base plot
+  * R:lattice
+  * R:ggplot2 
+
+1. Interactive Data Visualization  
+  * R:magick/animation
+  * R:plotly (based on d3.js)
+  * Rstudio:shiny 
+
+1. Selected Topics
+  * Spatiotemporal DataViz
+  * Map visualization
+  * Web scrapping, etc 
+]
+
+
+---
+# Assessments
+
+- No Final Exam!  
+
+- 40% Homeworks (2 sets) and in-class quizzes (2 sets);
+
+- 60% Final project, consisting of   
+
+   - DataViz app: 30%   
+   
+   - Oral presentation: 15%     
+   
+   - Written report: 15%   
+
+
+---
+# References
+
+- *R for Data Science* (2017 O'Reilly) by Grolemund and Wickham. http://r4ds.had.co.nz/
+
+- Wickham, H. (2016). *ggplot2: Elegant Graphics for Data Analysis* (2nd). 
+Springer. http://ggplot2.org/book/
+
+- Rossant, C. (2015). *Learning IPython for Interactive Computing and Data Visualization* (2nd). Packt. http://ipython-books.github.io/minibook/
+
+- Meeks, E. (2017) *D3.js in Action* (2nd Edition, 2017 Manning)   https://www.manning.com/books/d3js-in-action-second-edition 
+
+- Yau, N. (2011). *Visualize This: The FlowingData Guide to Design, Visualization, and Statistics*. Wiley. http://book.flowingdata.com/ 
+
+- *RStudio Cheat Cheets*. https://www.rstudio.com/resources/cheatsheets/
+
+---
+class: center, middle
+
+# RStudio and R Markdown
+
+
+
+---
+# RStudio IDE
+
+- RStudio is a popular IDE (Integrated Development Environment) for R programming
+
+- It is a powerful editor for R coding and debugging.
+
+- It is a powerful generator for HTML, PDF, dynamic documents and slide shows.
+
+- RStudio can be run on both Desktop and Cloud. 
+&lt;!-- In this course, we provide the RStudio Server:  http://stat3622.saas.hku.hk:8787  --&gt;
+
+- Check out more nice features of RStudio at its [official website](https://www.rstudio.com/products/rstudio/features/)
+
+
+---
+# RStudio IDE
+
+&lt;img src="RStudio-Screenshot.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+# R Markdown (Demonstrated)
+
+
+```r
+knitr::kable(head(iris), format = 'html')
+```
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; Sepal.Length &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Sepal.Width &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Petal.Length &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Petal.Width &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Species &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5.1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4.9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4.7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4.6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.4 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+- Dynamic documentation:  report, table, graphics ... 
+
+- R packages by Yihui Xie: knitr, bookdown, xaringan, etc
+
+---
+# R Markdown (Demonstrated)
+
+
+```r
+plot(iris, col=iris$Species)  
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+
+- Data-generated graphics that are reproducible 
+
+---
+# R Markdown 
+
+ 
+&lt;img src="Rmarkdown.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+- Click [here](https://rmarkdown.rstudio.com/lesson-1.html) to view a fantastic micro-video tutorial 
+
+- Browse [here](http://rmarkdown.rstudio.com/gallery.html) for a gallery of creative Rmarkdown works  
+
+
+---
+class: center, middle
+
+# Introduction to Data Science
+ 
+---
+#  Data Scientist The Sexy Job
+
+
+&lt;img src="HBR201210.png" width="75%" style="display: block; margin: auto;" /&gt;
+
+- See also an old article by NYT (2009): [For Today’s Graduate, Just One Word: Statistics](https://www.nytimes.com/2009/08/06/technology/06stats.html)
+
+- And another famous McKinseay 2011 Report: 
+[Big data: The next frontier for innovation, competition, and productivity](https://www.mckinsey.com/business-functions/digital-mckinsey/our-insights/big-data-the-next-frontier-for-innovation)
+
+---
+#  What is a data scientist?
+
+- Nate Silver ([FiveThirtyEight](https://fivethirtyeight.com/contributors/nate-silver/), author of The Signal and the Noise): "Data scientist is just a sexed up word for a statistician.
+
+
+- "A data scientist is someone who knows more statistics than a computer scientist and more computer science than a statistician.” (from [Joshua Blumenstock](http://www.jblumenstock.com/teaching/course=infx573))
+
+
+&lt;img src="DataScientistDict.png" width="75%" style="display: block; margin: auto;" /&gt;
+
+---
+#  What is a data scientist?
+
+&lt;img src="DSPillow.jpg" width="50%" style="display: block; margin: auto;" /&gt;
+
+
+&lt;!-- --- --&gt;
+&lt;!-- #  Job Market of Data Scientist  --&gt;
+
+&lt;!-- ```{r echo=FALSE, fig.align="center", out.width = '70%'} --&gt;
+&lt;!-- knitr::include_graphics("DataScientistJobHK.png") --&gt;
+&lt;!-- ``` --&gt;
+
+&lt;!-- --- --&gt;
+&lt;!-- #  Innovation Technologies  --&gt;
+
+
+&lt;!-- Big Data,  Data Science, Machine Learning, Artificial Intelligence, Deep Learning, and Statistics --&gt;
+
+&lt;!-- ```{r echo=FALSE, fig.align="center", out.width = '50%'} --&gt;
+&lt;!-- knitr::include_graphics("InnovationTechnology.jpg") --&gt;
+&lt;!-- ``` --&gt;
+
+&lt;!-- - [A BMC Blog Post](https://www.bmc.com/blogs/machine-learning-data-science-artificial-intelligence-deep-learning-and-statistics/) about these innovative technology terms  --&gt;
+
+&lt;!-- - [Another blog post](https://www.newgenapps.com/blog/artificial-intelligence-vs-machine-learning-vs-data-science) about "Artificial Intelligence vs Machine Learning vs Data Science" --&gt;
+
+
+&lt;!-- --- --&gt;
+&lt;!-- #  AI is Statistics  --&gt;
+
+&lt;!-- ```{r echo=FALSE, fig.align="center", fig.cap="HKU SAAS Orientation Day, 4/9/2018", out.width = '55%'} --&gt;
+&lt;!-- knitr::include_graphics("AIisStat.jpg") --&gt;
+&lt;!-- ``` --&gt;
+
+
+---
+#  From Big Data to Applied AI
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="AppliedAI.png" alt="HKU New BASc Programme in Applied AI (2019 onwards)" width="70%" /&gt;
+&lt;p class="caption"&gt;HKU New BASc Programme in Applied AI (2019 onwards)&lt;/p&gt;
+&lt;/div&gt;
+
+
+---
+#  Data Science Venn Diagram
+
+
+&lt;img src="DataScienceVennDiagram.png" width="45%" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+#  Data Science vs. Statitics 
+
+.pull-left[
+&lt;img src="TagCloudStatistics.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+&lt;img src="TagCloudDataScience.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+#  Data Science Workflow
+
+
+&lt;img src="DataScienceWorkflow1.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+#  Data Science Workflow
+
+&lt;img src="DataScienceWorkflow2.jpg" width="70%" style="display: block; margin: auto;" /&gt;
+
+
+---
+#  Roles of Data Visualization
+
+
+- Role 1: Exploratory data analysis (pre stage);
+
+- Role 2: Visual presentation of results (after stage).
+
+- John W. Tukey (1977; Exploratory Data Analysis):  "The greatest value of a picture is when it forces us to notice what
+we never expected to see.”
+
+
+.pull-left[
+&lt;img src="JohnTukey.png" width="47%" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+&lt;img src="JohnTukeyEDA.jpg" width="40%" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+class: center, middle
+
+## The best stats you've ever seen | Hans Rosling
+
+
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/hVimVzgtD6w" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+
+Click [here](https://www.youtube.com/embed/hVimVzgtD6w) to view it on YouTube. 
+
+---
+class: center, middle
+
+# Thank you! 
+
+Q&amp;A or Email ajzhang@hku.hk。
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+---
+title: "STAT3622 Data Visualization (Lecture 9)"
+subtitle: "Case Study: Global Top Brands"
+author: "<br>Dr. Aijun Zhang<br> The University of Hong Kong"
+date: "7 April 2020"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["default", "../stat3622-style.css"]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+editor_options: 
+  chunk_output_type: console
+---
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+options(width=90)
+knitr::opts_chunk$set(cache = TRUE, message=FALSE, warning=FALSE)
+```
+
+
+  
+# What's covered in this lecture?
+
+<img style="float: right; width: 560px; padding:100px 0 0 0;" src="WebScraping.png">
+
+- Introductory Web Scraping
+  
+  - Web Parsing
+  
+  - Data Preprocessing
+
+  - Image Downloading
+
+- Top Brand Data Visualization
+
+  - Static Charts
+
+  - Animated Bubble Charts
+  
+  - Interactive Visualization
+
+
+Today's lecture notes: [R Markdown Report](Lecture9_Brands.html)
+
+
+---
+class: center, middle
+
+# Thank you! 
+
+Q&A or Email ajzhang@hku.hk。
+
+
+

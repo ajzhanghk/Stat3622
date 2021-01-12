@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>STAT3622 Data Visualization (Lecture 12)</title>
+    <meta charset="utf-8" />
+    <meta name="author" content=" Dr. Aijun Zhang  The University of Hong Kong" />
+    <meta name="date" content="2020-04-28" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../stat3622-style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# STAT3622 Data Visualization (Lecture 12)
+## Big Data Visualization
+### <br>Dr. Aijun Zhang<br> The University of Hong Kong
+### 28 April 2020
+
+---
+
+
+
+# Big Data Visualization
+
+&lt;img style="float: right; width: 360px; padding:0 0 0 50px;" src="SketchBigData.png"&gt;
+
+Big data often come with two distinct features: 
+
+- Big n (number of observations): large-scale
+
+- Large p (number of features): high-dimensional
+
+&lt;br&gt;
+
+Challenging tasks when exploring big data in the context of unsupervised learning
+
+- Large-scale clustering 
+
+- Dimension reduction (when p is large)
+
+---
+# Two BigDataViz Approaches 
+
+&lt;img style="float: right; width: 350px; padding:0 10px 0 0;" src="tSNE_SubDSF.png"&gt;
+
+
+In this lecture, we discuss two different approaches for big data visualization: 
+
+- Dimension Reduction
+  
+  - PCA-based K-means Clustering
+  
+  - t-SNE Visualization
+  
+- Subsampled Data Exploration
+
+
+ 
+
+
+
+
+---
+class: center, middle
+
+# Dimension Reduction
+
+### From PCA to t-SNE
+
+---
+# Principal Component Analysis
+
+PCA is to project the data to a new coordinate system such that the greatest variance lies on the first coordinate (i.e. the first principal component), the second greatest variance on the second principal component, and so so. 
+
+&lt;img src="PCA_wiki.png" width="600px" style="display: block; margin: auto;" /&gt;
+
+---
+# Principal Component Analysis
+
+.pull-left[
+
+```r
+DataX = data.frame(x1 = iris$Sepal.Length, 
+                   x2 = iris$Petal.Width)
+(tmp = prcomp(DataX))
+```
+
+```
+## Standard deviations (1, .., p=2):
+## [1] 1.0734371 0.3382787
+## 
+## Rotation (n x k) = (2 x 2):
+##          PC1        PC2
+## x1 0.7419133 -0.6704958
+## x2 0.6704958  0.7419133
+```
+]
+
+.pull-right[
+&lt;img src="index_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+# PCA-based K-means Clustering 
+
+```r
+pr = prcomp(iris[,1:4]) # Use all four variables 
+par(mfrow=c(1,2), mar=rep(4,4))
+barplot(pr$sdev^2/sum(pr$sdev^2), xlab="PC", ylab="Percentage", main="Variance Explained")
+PCx = pr$x[,1:2]; kk = 3; set.seed(1); fit = kmeans(PCx, kk)
+plot(PCx[,1], PCx[,2], pch=19, cex=1, col=seq(2,1+kk)[fit$cluster], 
+     xlab="PC1", ylab="PC2", main="K-means on PC scores")
+points(fit$centers, pch=10, cex=2, col=seq(2,1+kk))
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+ 
+
+---
+# t-Distributed Stochastic Neighbor Embedding
+
+- Considering a Gaussian distribution around `\(x_i\)` with a given variance `\(\sigma_i^2\)`, where `\(\sigma_i\)` is smaller for the points in the sense areas than the points in the sparse areas. 
+
+- Similarity index: `\(p_{ij} = \frac{p_{j|i} + p_{i|j}}{2N}\)`, based on the conditional simlarity between data points: 
+&lt;img src="Formula_tSNE.png" width="300px" style="display: block; margin: auto;" /&gt;
+&lt;!-- `$$p_{j|i} = \frac{\exp\left(-\left| x_i - x_j\right|^2 \big/ 2\sigma_i^2\right)}{\sum_{k \neq i} \exp\left(-\left| x_i - x_k\right|^2 \big/ 2\sigma_i^2\right)}$$` --&gt;
+
+
+- t-SNE uses the heavy-tailed t-Student distribution with one degree of freedom (i.e. Cauchy distribution) instead of a Gaussian distribution.
+
+- t-SNE algorithm determines the locations of point maps in 2D by minimzing the Kullack-Leibler divergence using the gradient descent. 
+&lt;img src="Formula_KLdiv.png" width="300px" style="display: block; margin: auto;" /&gt;
+
+---
+# t-SNE illustrated 
+
+&lt;img src="tSNE_animation.gif" width="420px" style="display: block; margin: auto;" /&gt;
+Source:  [An illustrated introduction to the t-SNE algorithm](https://www.oreilly.com/learning/an-illustrated-introduction-to-the-t-sne-algorithm)
+
+See also: [How to Use t-SNE Effectively](https://distill.pub/2016/misread-tsne/)
+
+
+---
+
+```r
+library(Rtsne)
+iris_unique &lt;- unique(iris) # Remove duplicates
+iris_matrix &lt;- as.matrix(iris_unique[,1:4])
+par(mar=c(2,2,2,2)); set.seed(1)
+tsne_out &lt;- Rtsne(iris_matrix,pca=FALSE,perplexity=30,theta=0.0) # Run TSNE
+plot(tsne_out$Y, col=as.numeric(iris_unique$Species)+1)
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+# t-SNE on a large MNIST data with 60K sample 
+
+- Refer to STAT3612-Lecture 12 [MNIST Case Study](http://www.statsoft.org/wp-content/uploads/2018Stat3612/Lecture12_CaseMNIST/Lecture12_CaseMNIST.html) about the data background. 
+
+&lt;img src="TSNE_MNIST.png" width="600px" style="display: block; margin: auto;" /&gt;
+
+
+
+
+---
+class: center, middle
+
+# 2: Subsampled Data Exploration
+
+&lt;br&gt;
+
+Click for a [recent presentation](20181110DSD_Nankai.pdf)
+
+
+---
+class: center, middle
+
+# Thank you! 
+
+Q&amp;A or Email ajzhang@hku.hk。
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  /* Replace <script> tags in slides area to make them executable
+   *
+   * Runs after post-processing of markdown source into slides and replaces only
+   * <script>s on the last slide of continued slides using the .has-continuation
+   * class added by xaringan. Finally, any <script>s in the slides area that
+   * aren't executed are commented out.
+   */
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container:not(.has-continuation) script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+  var scriptsNotExecuted = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container.has-continuation script'
+  );
+  if (!scriptsNotExecuted.length) return;
+  for (var i = 0; i < scriptsNotExecuted.length; i++) {
+    var comment = document.createComment(scriptsNotExecuted[i].outerHTML)
+    scriptsNotExecuted[i].parentElement.replaceChild(comment, scriptsNotExecuted[i])
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

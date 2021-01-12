@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>STAT3622 Data Visualization (Lecture 4)</title>
+    <meta charset="utf-8" />
+    <meta name="author" content=" Dr. Aijun Zhang  The University of Hong Kong" />
+    <meta name="date" content="2020-03-03" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../stat3622-style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# STAT3622 Data Visualization (Lecture 4)
+## Data Manipulation
+### <br>Dr. Aijun Zhang<br> The University of Hong Kong
+### 3 March 2020
+
+---
+
+
+
+
+# What's covered in this lecture?
+
+&lt;img style="float: right; width: 400px; padding:0 50px 0 0;" src="DataMani.png"&gt;
+
+- Data Manipulation  
+
+  - Data Wrangling
+  
+  - Feature Engineering 
+
+- R:dplyr Package
+ 
+- Pipes %&gt;%
+ 
+
+&lt;br&gt;
+dplyr cheetsheet, Sparklyr, data.table 
+---
+class: center, middle
+
+# 1. Data Manipulation  
+
+
+---
+# Data Exploration
+
+&lt;img style="float: right; width: 300px; margin-left:20px; " src="R4DS.png"&gt;
+
+- R for Data Science (O'Reilly 2017) by Hadley Wickham
+
+- Free Online: http://r4ds.had.co.nz/  
+
+- Major coverage: 
+
+  - Data manipulation (R:dplyr)
+  
+  - Data visualization (R:ggplot2) 
+
+- Data Exploration = Data manipulation + Data visualization.
+---
+# Data Wrangling
+
+- Data wrangling (a term used in data science) is the process of transforming/mapping data from raw format into ready-to-analyze format. 
+
+- Besides ggplot2() for data visualization, Hadley Wickham has created a series of R packages for data wrangling, including
+
+  - tidyr for tidy data: observations in rows, variables in columns
+
+  - tibble for better ways to create, print and subset data frames
+
+  - dplyr for data manipulation -&gt; today
+
+- Refer to the ggplot2 book Chapter 9 about Tidy Data; and Chapter 10 about dplyr.
+
+
+---
+# Feature Engineering
+
+- A term often used in machine learning
+
+&gt; Andrew Ng (Stanford): "Coming up with features is difficult, time-consuming, requires expert knowledge. _Applied machine learning_ is basically feature engineering."
+
+- In statistics: variable creation and transformation 
+
+- Dictionary learning with overcomplete features ...  
+
+- Nowadays, deep learning algorithms aim at automatic feature learning instead of manual feature engineering ... 
+
+
+---
+class: center, middle
+
+# 2. R:dplyr Package
+
+
+---
+# R::dplyr verbs
+
+- filter() to select observations
+
+- arrange() to order observations
+
+- mutate() to add new variables
+
+- group_by() to group variables for summarise
+
+- R::base:merge() to combine two data.frames (or R::dplyr xxx_joins)
+
+
+
+
+---
+# Filter
+
+
+
+```r
+library(dplyr)
+(tmp = filter(iris, Species == 'versicolor' &amp; Sepal.Length &gt; 6.6))
+```
+
+```
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+## 1          7.0         3.2          4.7         1.4 versicolor
+## 2          6.9         3.1          4.9         1.5 versicolor
+## 3          6.7         3.1          4.4         1.4 versicolor
+## 4          6.8         2.8          4.8         1.4 versicolor
+## 5          6.7         3.0          5.0         1.7 versicolor
+## 6          6.7         3.1          4.7         1.5 versicolor
+```
+
+- Rowwise selection of samples/observations
+
+- Similar to base:which or subsetting 
+
+---
+# Arrange
+
+
+```r
+arrange(tmp, Sepal.Length, Sepal.Width, desc(Petal.Length))
+```
+
+```
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+## 1          6.7         3.0          5.0         1.7 versicolor
+## 2          6.7         3.1          4.7         1.5 versicolor
+## 3          6.7         3.1          4.4         1.4 versicolor
+## 4          6.8         2.8          4.8         1.4 versicolor
+## 5          6.9         3.1          4.9         1.5 versicolor
+## 6          7.0         3.2          4.7         1.4 versicolor
+```
+
+- Similar to base:sort and order functions 
+
+---
+# Mutate
+
+
+```r
+tmp = mutate(iris, Sepal.Size = Sepal.Length*Sepal.Width, 
+             Petal.Size = Petal.Length*Petal.Width) 
+head(tmp)
+```
+
+```
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species Sepal.Size Petal.Size
+## 1          5.1         3.5          1.4         0.2  setosa      17.85       0.28
+## 2          4.9         3.0          1.4         0.2  setosa      14.70       0.28
+## 3          4.7         3.2          1.3         0.2  setosa      15.04       0.26
+## 4          4.6         3.1          1.5         0.2  setosa      14.26       0.30
+## 5          5.0         3.6          1.4         0.2  setosa      18.00       0.28
+## 6          5.4         3.9          1.7         0.4  setosa      21.06       0.68
+```
+
+- New variable/feature creation 
+
+- Base commands:  tmp$Sepal.Size = ...
+
+---
+
+
+```r
+library(ggplot2)
+ggplot(tmp, aes(x=Sepal.Size, y=Petal.Size, colour=Species)) + 
+  geom_point(size=2)
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+# Summarise
+
+
+```r
+summarise(group_by(tmp, Species), mean(Sepal.Size), mean(Petal.Size))
+```
+
+```
+## # A tibble: 3 x 3
+##      Species `mean(Sepal.Size)` `mean(Petal.Size)`
+##       &lt;fctr&gt;              &lt;dbl&gt;              &lt;dbl&gt;
+## 1     setosa            17.2578             0.3656
+## 2 versicolor            16.5262             5.7204
+## 3  virginica            19.6846            11.2962
+```
+
+- Together with the group_by varaible 
+
+---
+# Merge
+
+
+```r
+(tmp1 = data.frame(Species=levels(iris$Species), x1 = c("A","B","C"), x2 = round(runif(3),3)))
+```
+
+```
+##      Species x1    x2
+## 1     setosa  A 0.798
+## 2 versicolor  B 0.273
+## 3  virginica  C 0.802
+```
+
+```r
+head(merge(iris, tmp1, by = "Species"))
+```
+
+```
+##   Species Sepal.Length Sepal.Width Petal.Length Petal.Width x1    x2
+## 1  setosa          5.1         3.5          1.4         0.2  A 0.798
+## 2  setosa          4.9         3.0          1.4         0.2  A 0.798
+## 3  setosa          4.7         3.2          1.3         0.2  A 0.798
+## 4  setosa          4.6         3.1          1.5         0.2  A 0.798
+## 5  setosa          5.0         3.6          1.4         0.2  A 0.798
+## 6  setosa          5.4         3.9          1.7         0.4  A 0.798
+```
+
+- I personally prefer base:merge() than dplyr:left/right/inner/full/etc_join functions 
+
+
+---
+class: center, middle
+
+# 3. Pipes %&gt;%
+
+
+---
+# Lastly, Pipes %&gt;%
+
+- The pipe %&gt;% requires R package dplyr or magrittr
+
+- Powerful trick for coding a sequence of operations
+
+- Output of old operation as the first argument of new operation
+
+- Especially useful in combined with ggplot2
+
+- Let's demonstrate it with Iris dataset ... 
+
+
+---
+
+
+```r
+iris %&gt;%
+  mutate(Sepal.Size = Sepal.Length*Sepal.Width, 
+         Petal.Size = Petal.Length*Petal.Width) %&gt;%
+  filter(Species != 'virginica') %&gt;% 
+  ggplot(aes(x=Sepal.Size, y=Petal.Size, colour=Species)) + 
+  geom_point(size=2) + 
+  geom_smooth(method = "lm") +
+  labs(title = 'Iris Flower Size (setosa vs. versicolor)')
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+class: center, middle
+
+# Thank you! 
+
+Q&amp;A or Email ajzhang@hku.hk。
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

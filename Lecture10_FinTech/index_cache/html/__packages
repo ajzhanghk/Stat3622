@@ -1,0 +1,11 @@
+base
+zoo
+xts
+TTR
+quantmod
+shiny
+ggplot2
+plotly
+bindrcpp
+dygraphs
+htmltools

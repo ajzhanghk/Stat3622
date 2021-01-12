@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>STAT3622 Data Visualization (Lecture 7)</title>
+    <meta charset="utf-8" />
+    <meta name="author" content=" Dr. Aijun Zhang  The University of Hong Kong" />
+    <meta name="date" content="2020-03-24" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../stat3622-style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# STAT3622 Data Visualization (Lecture 7)
+## Shiny iDataViz Web Apps
+### <br>Dr. Aijun Zhang<br> The University of Hong Kong
+### 24 March 2020
+
+---
+
+
+
+
+# What's covered in this lecture?
+
+&lt;img style="float: right; width: 400px; padding:50px 50px 0 0;" src="ShinyLogo.png"&gt;
+
+- Introduction to Shiny 
+  
+  - Shiny App Structure
+  
+  - R Markdown with Shiny
+  
+  - UI Widgets
+
+  - Shiny Dashboard
+
+- Shiny App Examples in RStuido/Rmarkdown
+
+---
+class: center, middle
+
+# 1. Introduction to Shiny 
+
+
+---
+# Introduction to Shiny 
+
+- Shiny is an R package, for easy building interactive web apps straight from R.
+
+- Linked views of interactive data visualization (compare with plotly)
+
+- It may enable R Markdown (dynamic documents) to be interactive
+
+- It provides tools for building dashboards …
+
+- Click [here](https://shiny.rstudio.com/images/shiny-cheatsheet.pdf) to download the Shiny cheat sheet. 
+
+- Click https://shiny.rstudio.com/tutorial/ for wonderful tutorials
+
+
+---
+# Basic Structure: app.R
+
+
+```r
+library(shiny)
+ui &lt;- ...
+server &lt;- ...
+shinyApp(ui = ui, server = server)
+```
+
+&lt;img src="UiServerIO.png" width="500px" style="display: block; margin: auto;" /&gt;
+
+- **ui module** (in the front end): control widgets (HTML elements)
+
+- **server module** (in the back end): DataViz logic (i.e. R codes)
+
+---
+# R Markdown with Shiny
+
+- In Rmd, add "runtime: shiny" in the header
+
+- R chunk with `shinyApp(ui=..., server=...)`
+
+
+```r
+shinyApp(
+  # Define UI elements in the front end
+  ui = fluidPage(
+    titlePanel("Whatever App Title"),
+    sidebarPanel(sliderInput("nbreaks", "Number of breaks:",
+                             min = 6, max = 50, value = 20)),
+    mainPanel(plotOutput("thisPlot"))
+    ),
+  # Define server logic in the back end
+  server = function(input, output) {
+    output$thisPlot &lt;- renderPlot({
+      hist(iris$Sepal.Length, n=input$nbreaks)
+      })
+  }, 
+  options = list(height = 500)
+)
+```
+
+- "Run Document" to generate the report with live Shiny apps
+
+
+---
+# Shiny makes interactive graphics! 
+
+- Run the previous code in ["app.R"]() or in R markdown to have the following output:
+
+
+&lt;img src="ShinyHist.png" width="600px" style="display: block; margin: auto;" /&gt;
+
+- Unfortunately, so far the Rmd:xaringan (format for this presentation) does not support Shiny yet. 
+
+
+
+---
+# UI Widgets
+
+- Web/HTML elements (See the collections below). Shiny has a built-in family of functions to create these widgets. See RStudio-Shiny's [Lesson 3](https://shiny.rstudio.com/tutorial/written-tutorial/lesson3/).
+
+- Each widget is associated with an ID/pointer (invisible) and a label (visible).
+
+&lt;img src="ShinyWidgets.png" width="800px" style="display: block; margin: auto;" /&gt;
+
+
+---
+# Built in Examples
+
+In R console, run the following launch Shiny built-in examples 
+
+
+```r
+library(shiny)
+runExample("01_hello")
+runExample("02_text")
+runExample("03_reactivity")
+runExample("04_mpg")
+runExample("05_sliders")
+runExample("06_tabsets")
+runExample("07_widgets")
+runExample("08_html")
+runExample("09_upload")
+runExample("10_download")
+runExample("11_timer")
+```
+
+---
+# Shiny Dashboard
+
+- **R:shinydashboard** with URL: http://rstudio.github.io/shinydashboard/index.html
+
+
+&lt;img src="ShinyDashboard.png" width="500px" style="display: block; margin: auto;" /&gt;
+
+- Get started from here: http://rstudio.github.io/shinydashboard/get_started.html
+
+---
+class: center, middle
+
+# 2. Shiny App Examples
+
+&lt;br&gt;
+
+## Switch to RStudio and RMarkdown
+
+
+---
+class: center, middle
+
+# Thank you! 
+
+Q&amp;A or Email ajzhang@hku.hk。
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  /* Replace <script> tags in slides area to make them executable
+   *
+   * Runs after post-processing of markdown source into slides and replaces only
+   * <script>s on the last slide of continued slides using the .has-continuation
+   * class added by xaringan. Finally, any <script>s in the slides area that
+   * aren't executed are commented out.
+   */
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container:not(.has-continuation) script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+  var scriptsNotExecuted = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container.has-continuation script'
+  );
+  if (!scriptsNotExecuted.length) return;
+  for (var i = 0; i < scriptsNotExecuted.length; i++) {
+    var comment = document.createComment(scriptsNotExecuted[i].outerHTML)
+    scriptsNotExecuted[i].parentElement.replaceChild(comment, scriptsNotExecuted[i])
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

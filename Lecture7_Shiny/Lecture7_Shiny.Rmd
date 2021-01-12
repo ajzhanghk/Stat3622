@@ -1,0 +1,387 @@
+---
+title: 'Lecture 7: Shiny iDataViz Web Apps'
+author: '[Dr. Aijun Zhang](http://www.statsoft.org) - [STAT3622 Data Visualization](http://www.statsoft.org/teaching/stat3622/)'
+date: "24 March 2020"
+runtime: shiny
+output:
+  html_document:
+    highlight: tango
+    mathjax: null
+    number_sections: yes
+    theme: paper
+    toc: yes
+    toc_depth: 2
+---
+
+<style>
+  body {font-size: 14pt; }
+</style>
+
+
+```{r setup, include=FALSE}
+options(width=120)
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, message=FALSE)
+```
+
+  
+# Shiny App in R Markdown
+A shiny app consists of two modules: ui and server, which can be coded in R markdown as follows.
+```{r, echo = T, eval=FALSE}
+shinyApp(ui = fluidPage(), server = function(input, output){}
+```
+ 
+```{r, out.width = "600px", fig.align='left', echo=FALSE}
+knitr::include_graphics("http://www.statsoft.org/wp-content/uploads/2018Stat3622/Lecture7_Shiny/UiServerIO.png")
+```
+
+
+## The App Layout 
+
+```{r, echo = T}
+library(shiny)
+ui <- fluidPage(
+  titlePanel("Here is the title panel"),
+  sidebarPanel(h4("Here is the side panel")),
+  mainPanel(h2("Here is the main panel"))
+)
+server <- function(input, output) {}
+shinyApp(ui = ui, server = server)
+```
+
+
+
+## Control Widgets 
+
+- Web/HTML elements (See the collections below). Shiny has a built-in family of functions to create these widgets. See RStudio-Shiny's [Lesson 3](https://shiny.rstudio.com/tutorial/written-tutorial/lesson3/).
+
+- Each widget is associated with an ID/pointer (invisible) and a label (visible).
+
+
+```{r, out.width = "800px", fig.align='center', echo=FALSE}
+knitr::include_graphics("http://www.statsoft.org/wp-content/uploads/2018Stat3622/Lecture7_Shiny/ShinyWidgets.png")
+```
+
+
+## Interactive Histogram
+
+```{r, echo = T}
+shinyApp(
+  # Define UI elements in the front end
+  ui = fluidPage(
+    titlePanel("Shiny Interactive Histogram"),
+    sidebarPanel(sliderInput("nbreaks",
+                             "Number of breaks:",
+                             min = 6,
+                             max = 50,
+                             value = 20)
+    ),
+    mainPanel(
+      plotOutput("thisPlot")
+    )
+  ),
+  # Define server logic in the back end
+  server = function(input, output) {
+    output$thisPlot <- renderPlot({
+      hist(iris$Sepal.Length, n=input$nbreaks, col = "skyblue")
+    })
+  }, 
+  options = list(height = 500)
+)
+```
+
+
+
+# Shiny Examples
+
+## Example 1: Interactive Histogram with More Controls
+```{r echo=T}
+shinyApp(
+  ui = fluidPage(
+    titlePanel("Shiny Interactive Histogram for Iris Data"),
+    sidebarLayout(
+      sidebarPanel(
+        selectInput("spec", "Select Species:", 
+                    choices = c('all', levels(iris$Species))),
+        radioButtons("xvar", "Select Variables:",
+                     choices = colnames(iris)[1:4]),
+        sliderInput("nbin",
+                    "Number of bins:",
+                    min = 5,
+                    max = 40,
+                    value = 20),
+        checkboxInput("kden", strong("Show density estimate"), FALSE)
+      ),
+      mainPanel(
+        plotOutput("thisPlot")
+      )
+    )
+  ), 
+  server = function(input, output) {
+    output$thisPlot <- renderPlot({
+      if (input$spec == "all") x = iris[, input$xvar]
+      else x = iris[iris$Species==input$spec, input$xvar]
+      hist(x, n=input$nbin, freq = FALSE,
+           col = 'darkgray', border = 'white', 
+           main=paste("Selected Species: ", input$spec), 
+           xlab = paste("Selected Variable:", input$xvar))
+      if (input$kden == TRUE) lines(density(x), col='red', lty=2, lwd=2)
+    })
+  },
+  options = list(height =500)
+)
+```
+
+## Example 2: K-means Clustering
+```{r}
+shinyApp(
+  ui = fluidPage(
+    titlePanel('K-means Clustering of Iris Data'),
+    mainPanel(
+      plotOutput('thisPlot')
+    ),
+    sidebarPanel(
+      selectInput('xcol', 'X Variable', names(iris)[1:4]),
+      selectInput('ycol', 'Y Variable', names(iris)[1:4],
+                  selected=names(iris)[[2]]),
+      numericInput('clusters', 'Cluster count', 6, min = 1, max = 9)
+    )
+  ),
+  server = function(input, output) {
+    selectedData <- reactive({
+      iris[, c(input$xcol, input$ycol)]
+    })
+    
+    clusters <- reactive({
+      kmeans(selectedData(), input$clusters)
+    })
+    
+    output$thisPlot <- renderPlot({
+      par(mar = c(5.1, 4.1, 0, 1))
+      plot(selectedData(),
+           col = clusters()$cluster,
+           pch = 20, cex = 3)
+      points(clusters()$centers, pch = 21, cex = 4, lwd = 4, col='black')
+    })
+  },
+  options = list(height=500)
+)
+```
+
+
+
+## Example 3: Hans Rosling's Bubbles
+```{r}
+library(shiny)
+library(gapminder)
+library(ggplot2)
+
+shinyApp(
+  ui = fluidPage(
+    titlePanel("Hans Rosling's Bubbles"),
+    sidebarLayout(
+      position = c("left", "right"), fluid = TRUE,
+      sidebarPanel(
+        selectInput("var_country", "Select a country:", 
+                    choices = levels(gapminder$country)), 
+        sliderInput("var_year", "Year:",
+                    min = min(gapminder$year),
+                    max = max(gapminder$year),
+                    value = min(gapminder$year), 
+                    step = 5,
+                    animate = animationOptions(interval = 1000,loop = TRUE)),
+        checkboxInput(inputId = "var_continent",
+                      label = strong("Show continents in color."), 
+                      value = FALSE)
+        ),
+      mainPanel(
+        plotOutput("thisPlot")
+        )
+     )
+  ),
+  server = function(input, output) {
+    output$thisPlot <- renderPlot({
+      TmpX = gapminder[gapminder$year==input$var_year, ]
+      idx1 = which(TmpX$country == input$var_country)
+      RangePop = range(gapminder$pop)
+      p = ggplot(TmpX, aes(gdpPercap, lifeExp, size = pop)) +
+        geom_point(alpha=1/3) + ylim(20, 90) + 
+        geom_text(aes(TmpX$gdpPercap[idx1], TmpX$lifeExp[idx1]), 
+                  label=input$var_country, size=8, color=1) +
+        scale_x_log10(limits = range(gapminder$gdpPercap)) + 
+        scale_size(guide = "none", range = c(1,20)*range(TmpX$pop)/RangePop) + 
+        theme_classic() + 
+        labs(x="GDP per capita", y="Life Expectancy") 
+      if (!input$var_continent) print(p)
+      if (input$var_continent) p + geom_point(aes(color=continent)) +
+        scale_color_manual(values = c(3,2,4,5,6))
+    })
+  },
+  options = list(height=500)
+)
+```
+
+
+# Shiny Dashboard
+
+```{r}
+library(shiny)
+library(shinydashboard)
+
+shinyApp(
+ui = dashboardPage(
+  dashboardHeader(title = "Basic dashboard"),
+  dashboardSidebar(),
+  dashboardBody(
+    # Boxes need to be put in a row (or column)
+    fluidRow(
+      box(plotOutput("plot1", height = 250)),
+      box(
+        title = "Controls",
+        sliderInput("slider", "Number of bins:", 6, 50, 10)
+      )
+    )
+  )
+),
+server = function(input, output) {
+  set.seed(1)
+  data <- rnorm(300)
+
+  output$plot1 <- renderPlot({
+    hist(data, n=input$slider)
+  })
+  
+}
+)
+```
+
+
+
+Another example from [here](https://github.com/amrrs/sample_revenue_dashboard_shiny):
+
+```{r}
+library(shiny)
+require(shinydashboard)
+library(ggplot2)
+library(dplyr)
+
+recommendation <- read.csv('http://www.statsoft.org/wp-content/uploads/2018Stat3622/Lecture7_Shiny/recommendation.csv',stringsAsFactors = F,header=T)
+
+#head(recommendation)
+
+
+#Dashboard header carrying the title of the dashboard
+header <- dashboardHeader(title = "Basic Dashboard")  
+
+#Sidebar content of the dashboard
+sidebar <- dashboardSidebar(
+  sidebarMenu(
+    menuItem("Dashboard", tabName = "dashboard", icon = icon("dashboard")),
+    menuItem("Visit-us", icon = icon("send",lib='glyphicon'), 
+             href = "https://www.salesforce.com")
+  )
+)
+
+
+frow1 <- fluidRow(
+  valueBoxOutput("value1")
+  ,valueBoxOutput("value2")
+  ,valueBoxOutput("value3")
+)
+
+frow2 <- fluidRow(
+  
+  box(
+    title = "Revenue per Account"
+    ,status = "primary"
+    ,solidHeader = TRUE 
+    ,collapsible = TRUE 
+    ,plotOutput("revenuebyPrd", height = "300px")
+  )
+  
+  ,box(
+    title = "Revenue per Product"
+    ,status = "primary"
+    ,solidHeader = TRUE 
+    ,collapsible = TRUE 
+    ,plotOutput("revenuebyRegion", height = "300px")
+  ) 
+  
+)
+
+
+
+# combine the two fluid rows to make the body
+body <- dashboardBody(frow1, frow2)
+
+#completing the ui part with dashboardPage
+ui <- dashboardPage(title = 'This is my Page title', header, sidebar, body, skin='red')
+
+# create the server functions for the dashboard  
+server <- function(input, output) { 
+  
+  #some data manipulation to derive the values of KPI boxes
+  total.revenue <- sum(recommendation$Revenue)
+  sales.account <- recommendation %>% group_by(Account) %>% summarise(value = sum(Revenue)) %>% filter(value==max(value))
+  prof.prod <- recommendation %>% group_by(Product) %>% summarise(value = sum(Revenue)) %>% filter(value==max(value))
+  
+  
+  #creating the valueBoxOutput content
+  output$value1 <- renderValueBox({
+    valueBox(
+      formatC(sales.account$value, format="d", big.mark=',')
+      ,paste('Top Account:',sales.account$Account)
+      ,icon = icon("stats",lib='glyphicon')
+      ,color = "purple")
+    
+    
+  })
+  
+  
+  
+  output$value2 <- renderValueBox({
+    
+    valueBox(
+      formatC(total.revenue, format="d", big.mark=',')
+      ,'Total Expected Revenue'
+      ,icon = icon("gbp",lib='glyphicon')
+      ,color = "green")
+    
+  })
+  
+  
+  
+  output$value3 <- renderValueBox({
+    
+    valueBox(
+      formatC(prof.prod$value, format="d", big.mark=',')
+      ,paste('Top Product:',prof.prod$Product)
+      ,icon = icon("menu-hamburger",lib='glyphicon')
+      ,color = "yellow")
+    
+  })
+  
+  #creating the plotOutput content
+  
+  output$revenuebyPrd <- renderPlot({
+    ggplot(data = recommendation, 
+           aes(x=Product, y=Revenue, fill=factor(Region))) + 
+      geom_bar(position = "dodge", stat = "identity") + ylab("Revenue (in Euros)") + 
+      xlab("Product") + theme(legend.position="bottom" 
+                              ,plot.title = element_text(size=15, face="bold")) + 
+      ggtitle("Revenue by Product") + labs(fill = "Region")
+  })
+  
+  
+  output$revenuebyRegion <- renderPlot({
+    ggplot(data = recommendation, 
+           aes(x=Account, y=Revenue, fill=factor(Region))) + 
+      geom_bar(position = "dodge", stat = "identity") + ylab("Revenue (in Euros)") + 
+      xlab("Account") + theme(legend.position="bottom" 
+                              ,plot.title = element_text(size=15, face="bold")) + 
+      ggtitle("Revenue by Region") + labs(fill = "Region")
+  })
+}
+
+
+shinyApp(ui, server)
+```

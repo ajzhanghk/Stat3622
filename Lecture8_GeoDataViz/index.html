@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>STAT3622 Data Visualization (Lecture 8)</title>
+    <meta charset="utf-8" />
+    <meta name="author" content=" Dr. Aijun Zhang  The University of Hong Kong" />
+    <meta name="date" content="2020-03-31" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../stat3622-style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# STAT3622 Data Visualization (Lecture 8)
+## Geographical Data Visualization
+### <br>Dr. Aijun Zhang<br> The University of Hong Kong
+### 31 March 2020
+
+---
+
+
+
+
+  
+  
+# What's covered in this lecture?
+
+&lt;img style="float: right; width: 400px; padding:0 50px 0 0;" src="HKMap.png"&gt;
+
+- Display Maps in R
+
+  - World/Countries
+  
+  - Hong Kong SAR
+  
+  - R:leaflet Package
+  
+- Data Visualization on Maps
+
+- Case Study: HK Home Prices
+ 
+
+ 
+---
+class: center, middle
+
+# 1. Display Maps in R
+
+---
+# Map Visualization
+
+- Geographical/spatial data visualization
+
+- Spatial data structure
+
+- Static and interactive maps
+
+- R packages: maps, sp, ggplot2, plotly, leaflet …
+ 
+
+---
+# World Map in R
+
+
+```r
+library(maps)
+map('world', fill=TRUE, border='black',  col='gray',   bg='white')
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+# World Map by R:ggplot2
+
+
+```r
+library(ggplot2)
+worldmap = map_data('world')
+ggplot(worldmap, aes(long, lat, group=group)) + geom_polygon(fill='yellow', colour="green") +
+  theme_bw()
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+# Map Data Structure
+
+```r
+str(worldmap)
+```
+
+```
+## 'data.frame':	99338 obs. of  6 variables:
+##  $ long     : num  -69.9 -69.9 -69.9 -70 -70.1 ...
+##  $ lat      : num  12.5 12.4 12.4 12.5 12.5 ...
+##  $ group    : num  1 1 1 1 1 1 1 1 1 1 ...
+##  $ order    : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ region   : chr  "Aruba" "Aruba" "Aruba" "Aruba" ...
+##  $ subregion: chr  NA NA NA NA ...
+```
+
+```r
+head(worldmap)
+```
+
+```
+##        long      lat group order region subregion
+## 1 -69.89912 12.45200     1     1  Aruba      &lt;NA&gt;
+## 2 -69.89571 12.42300     1     2  Aruba      &lt;NA&gt;
+## 3 -69.94219 12.43853     1     3  Aruba      &lt;NA&gt;
+## 4 -70.00415 12.50049     1     4  Aruba      &lt;NA&gt;
+## 5 -70.06612 12.54697     1     5  Aruba      &lt;NA&gt;
+## 6 -70.05088 12.59707     1     6  Aruba      &lt;NA&gt;
+```
+
+---
+# Country Maps: US
+
+
+```r
+thismap = map_data("state") 
+ggplot(thismap, aes(long, lat, group=group, fill=region)) +  geom_polygon(show.legend = F) 
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+# Country Maps: China
+
+```r
+library(mapdata) # map data for more countries
+thismap = map("china", plot=F)
+ggplot(thismap, aes(long, lat, group=group)) +  geom_path() + ylim(15,55)
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /&gt;
+
+- A tutorial in Chinese: https://cosx.org/2009/07/drawing-china-map-using-r/
+ 
+
+---
+# Hong Kong Map Data
+-  Download map database (.rds) source: [http://gadm.org/country](http://gadm.org/country)
+
+
+```r
+library(sp)
+hkmap = readRDS("HKG_adm1.rds") 
+class(hkmap)
+```
+
+```
+## [1] "SpatialPolygonsDataFrame"
+## attr(,"package")
+## [1] "sp"
+```
+
+- ggplot2::fortify converts "sp" object to data.frame
+
+
+
+```r
+library(ggplot2)
+hkmapdf = fortify(hkmap) 
+head(hkmapdf,3)
+```
+
+```
+##       long      lat order  hole piece id group
+## 1 114.1670 22.28153     1 FALSE     1  1   1.1
+## 2 114.1671 22.28086     2 FALSE     1  1   1.1
+## 3 114.1672 22.28038     3 FALSE     1  1   1.1
+```
+
+
+---
+# Hong Kong SAR Map
+
+
+```r
+ggplot(hkmapdf, aes(long, lat, group=group, fill=id)) + geom_polygon(show.legend = F) 
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+# Extra data from Wikipedia
+
+- HK population by districts: https://en.wikipedia.org/wiki/Districts_of_Hong_Kong 
+- Copy and paste datatable to Excel plus some manual editing
+
+
+```r
+wikidata = read.csv("HK18Districts.csv"); 
+library(knitr); kable(wikidata, format="html")
+```
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; District &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Population &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Area &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Density &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Region &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Code &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Central and Western &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 244600 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12.44 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 19983.92 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; HK &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; CW &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Eastern &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 574500 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18.56 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 31217.67 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; HK &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; EA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Southern &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 269200 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 38.85 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6962.68 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; HK &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; SO &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Wan Chai &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 150900 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.83 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15300.10 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; HK &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; WC &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sham Shui Po &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 390600 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.35 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 41529.41 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; KL &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; SS &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Kowloon City &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 405400 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10.02 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 40194.70 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; KL &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; KC &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Kwun Tong &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 641100 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11.27 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 56779.05 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; KL &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; KU &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Wong Tai Sin &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 426200 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.30 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 45645.16 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; KL &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; WT &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Yau Tsim Mong &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 318100 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.99 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 44864.09 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; KL &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; YT &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Islands &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 146900 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 175.12 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 825.14 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NT &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; IS &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Kwai Tsing &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 507100 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 23.34 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 21503.86 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NT &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; KI &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; North &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 310800 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 136.61 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2220.19 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NT &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NO &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sai Kung &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 448600 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 129.65 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3460.08 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NT &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; SK &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sha Tin &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 648200 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 68.71 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9433.85 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NT &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ST &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Tai Po &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 307100 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 136.15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2220.35 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NT &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; TP &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Tsuen Wan &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 303600 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 61.71 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4887.38 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NT &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; TW &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Tuen Mun &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 495900 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 82.89 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5889.38 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NT &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; TM &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Yuen Long &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 607200 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 138.46 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4297.99 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NT &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; YL &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+
+
+---
+# Map Wikidata with HKmap$HASC_1
+
+```r
+hkmapmeta = data.frame(mapid=hkmap$ID_1, Code=hkmap$HASC_1)
+hkmapmeta$Code = gsub('HK.', '', as.character(hkmapmeta$Code))
+hkmapmeta = merge(wikidata, hkmapmeta, by="Code", sort=FALSE)
+kable(hkmapmeta, format="html") 
+```
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Code &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; District &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Population &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Area &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Density &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Region &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; mapid &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; CW &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Central and Western &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 244600 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12.44 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 19983.92 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; HK &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; EA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Eastern &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 574500 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18.56 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 31217.67 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; HK &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; SO &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Southern &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 269200 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 38.85 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6962.68 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; HK &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; WC &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Wan Chai &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 150900 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.83 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15300.10 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; HK &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; SS &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Sham Shui Po &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 390600 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.35 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 41529.41 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; KL &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; KC &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Kowloon City &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 405400 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10.02 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 40194.70 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; KL &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; KU &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Kwun Tong &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 641100 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11.27 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 56779.05 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; KL &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; WT &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Wong Tai Sin &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 426200 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.30 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 45645.16 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; KL &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; YT &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Yau Tsim Mong &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 318100 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.99 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 44864.09 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; KL &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 17 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; IS &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Islands &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 146900 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 175.12 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 825.14 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NT &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; KI &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Kwai Tsing &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 507100 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 23.34 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 21503.86 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NT &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NO &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; North &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 310800 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 136.61 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2220.19 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NT &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; SK &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Sai Kung &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 448600 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 129.65 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3460.08 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NT &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; ST &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Sha Tin &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 648200 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 68.71 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9433.85 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NT &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; TP &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Tai Po &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 307100 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 136.15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2220.35 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NT &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; TW &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Tsuen Wan &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 303600 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 61.71 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4887.38 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NT &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 13 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; TM &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Tuen Mun &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 495900 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 82.89 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5889.38 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NT &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 14 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; YL &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Yuen Long &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 607200 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 138.46 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4297.99 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NT &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+# Merge HKMap DataFrame with Wikidata
+
+```r
+hkmapdf = merge(hkmapdf,hkmapmeta, by.x="id", by.y="mapid")
+head(hkmapdf)
+```
+
+```
+##   id     long      lat order  hole piece group Code            District Population  Area
+## 1  1 114.1670 22.28153     1 FALSE     1   1.1   CW Central and Western     244600 12.44
+## 2  1 114.1671 22.28086     2 FALSE     1   1.1   CW Central and Western     244600 12.44
+## 3  1 114.1672 22.28038     3 FALSE     1   1.1   CW Central and Western     244600 12.44
+## 4  1 114.1682 22.27885     4 FALSE     1   1.1   CW Central and Western     244600 12.44
+## 5  1 114.1683 22.27865     5 FALSE     1   1.1   CW Central and Western     244600 12.44
+## 6  1 114.1683 22.27623     6 FALSE     1   1.1   CW Central and Western     244600 12.44
+##    Density Region
+## 1 19983.92     HK
+## 2 19983.92     HK
+## 3 19983.92     HK
+## 4 19983.92     HK
+## 5 19983.92     HK
+## 6 19983.92     HK
+```
+
+---
+# Hong Kong Map: 3 Regions
+
+```r
+ggplot(hkmapdf, aes(long, lat, group=group, fill=Region)) + geom_polygon()
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+# Hong Kong Map: 18 Districts
+
+```r
+ggplot(hkmapdf, aes(long, lat, group=group, fill=Code)) + geom_polygon() +
+  guides(fill=guide_legend(title='18 Districts', ncol = 2)) 
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto;" /&gt;
+
+&lt;!-- --- --&gt;
+&lt;!-- # Interactive Maps by R:leaflet --&gt;
+&lt;!-- ```{r fig.align="center", fig.asp=0.5, fig.width=10} --&gt;
+&lt;!-- library(leaflet) --&gt;
+&lt;!-- leaflet() %&gt;% addTiles() %&gt;%  # Add map tiles (Default: OpenStreetMap) --&gt;
+&lt;!--   addMarkers(lng=114.137426, lat=22.282793, popup="The University of Hong Kong") --&gt;
+&lt;!-- ``` --&gt;
+
+&lt;!-- --- --&gt;
+&lt;!-- # Adding Map Markers: EV Charging Stations  --&gt;
+
+&lt;!-- ```{r fig.align="center", fig.width=10, fig.asp=0.8, echo = T} --&gt;
+&lt;!-- mapdata = read.csv("hkecharge.csv")   --&gt;
+&lt;!-- kable(t(mapdata[1:3,]), format="html") # the first record --&gt;
+&lt;!-- ```   --&gt;
+
+&lt;!-- - Download the data from [https://DATA.GOV.HK/](https://data.gov.hk/en-data/dataset/hkelectric-tnd_cs_ci-hkelectric-ev-location) --&gt;
+
+&lt;!-- --- --&gt;
+&lt;!-- # Adding Map Markers: EV Charging Stations  --&gt;
+&lt;!-- ```{r fig.asp=0.5, fig.width=10} --&gt;
+&lt;!-- leaflet(data = mapdata) %&gt;% addTiles() %&gt;%  --&gt;
+&lt;!--   addMarkers(~Longitude, ~Latitude, popup = ~as.character(Address)) %&gt;% --&gt;
+&lt;!--   setView(lng = 114.183413 , lat = 22.248648, zoom=12) --&gt;
+&lt;!-- ``` --&gt;
+
+
+---
+class: center, middle
+
+# 2. Data Visualization on Maps
+
+
+---
+# HK Population by Districts
+
+
+```r
+ggplot(hkmapdf, aes(long, lat, group=group, fill=Population)) + geom_polygon() + 
+  ggtitle("Population by Districts") 
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+# HK Population Density by Districts
+
+```r
+ggplot(hkmapdf, aes(long, lat, group=group, fill=Density)) + geom_polygon() +
+  ggtitle("Population Density by Districts")  
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+# HK Population Density by Districts
+
+- Customized color bar by manually setting `scale_fill_gradient`
+
+
+```r
+ggplot(hkmapdf, aes(long, lat, group=group, fill=Density)) + geom_polygon() +
+  scale_fill_gradient(limits=range(hkmapdf$Density), low="white", high="red") +
+  ggtitle("Population Density by Districts")  
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+class: center, middle
+
+# 3. Case Study: HK Home Prices
+
+&lt;img src="HKHousing.jpg" width="500px" style="display: block; margin: auto;" /&gt;
+
+&lt;br /&gt;
+Purpose of study: to demonstrate geographical/spatiotemporal data visualization.
+
+Click the [HTML](Lecture8_HomePrice.html) file generated by R markdown. 
+
+---
+class: center, middle
+
+# Thank you! 
+
+Q&amp;A or Email ajzhang@hku.hk。
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  /* Replace <script> tags in slides area to make them executable
+   *
+   * Runs after post-processing of markdown source into slides and replaces only
+   * <script>s on the last slide of continued slides using the .has-continuation
+   * class added by xaringan. Finally, any <script>s in the slides area that
+   * aren't executed are commented out.
+   */
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container:not(.has-continuation) script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+  var scriptsNotExecuted = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container.has-continuation script'
+  );
+  if (!scriptsNotExecuted.length) return;
+  for (var i = 0; i < scriptsNotExecuted.length; i++) {
+    var comment = document.createComment(scriptsNotExecuted[i].outerHTML)
+    scriptsNotExecuted[i].parentElement.replaceChild(comment, scriptsNotExecuted[i])
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

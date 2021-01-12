@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>STAT3622 Data Visualization (Lecture 3)</title>
+    <meta charset="utf-8" />
+    <meta name="author" content=" Dr. Aijun Zhang  The University of Hong Kong" />
+    <meta name="date" content="2020-02-11" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="..\stat3622-style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# STAT3622 Data Visualization (Lecture 3)
+## R Graphics with ggplot2
+### <br>Dr. Aijun Zhang<br> The University of Hong Kong
+### 11 February 2020
+
+---
+
+
+
+
+# What's covered in this lecture?
+
+&lt;a href="https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf"&gt; &lt;img style="float: right; width: 350px; padding:0 50px 0 0;" src="CheetSheetDataViz.jpg"&gt;&lt;/a&gt;
+
+I. Grammar of Graphics  
+
+  - Hadley Wickham and R:ggplot2
+  
+  - Layer-by-Layer Graphics
+
+II. Quick plots with qplot()
+
+III. Layer-by-layer ggplot()
+
+IV. Options and themes  
+
+
+---
+class: center, middle
+
+# I. Grammar of Graphics
+
+
+---
+# Hadley Wickham and R:ggplot2
+
+&lt;img style="float: right; width: 200px; margin-left:50px; " src="WickhamGGPLOT2.jpg"&gt;
+
+- Chief scientist at RStudio, Creator of popular R packages: ggplot2, dplyr, tidyr, devtools, etc; “The man who r
+evolutionized R” according to [Pricenomics (2015)](https://priceonomics.com/hadley-wickham-the-man-who-revolutionized-r/)
+
+- R graphics: base -&gt; lattice -&gt; ggplot2
+
+&gt; "ggplot2, started in 2005, is an attempt to take the good things about base and lattice graphics and improve on them with a strong underlying model" (Hadley Wickham)
+
+- R:ggplot2 is one of most commonly downloaded R packages 
+
+- Based on Grammar of Graphics by Wilkinson (2005; Springer 2ed)
+
+---
+#Grammar of Graphics (GG)
+
+&lt;img style="float: right; width: 200px; margin-left:50px; " src="BookGG2005.jpg"&gt;
+
+Quote from the ggplot2 book that further quotes Wilkinson (2005):
+
+&gt; In brief, the grammar tells us that a statistical graphic is a mapping from data to aesthetic attributes (colour, shape, size) of geometric objects (points, lines, bars). The plot may also contain statistical transformations of the data and is drawn on a specific coordinate system. Facetting can be used to generate the same plot for different subsets of the dataset. It is the combination of these independent components that make up a graphic.
+
+**Keywords:** mapping, aesthetic attributes, geometric objects, statistical transformations, coordinate system, facetting
+
+
+---
+# R:ggplot2 package
+&lt;img src="ggplot2cran.png" width="700px" style="display: block; margin: auto;" /&gt;
+
+- The most popular package for producing static visualizations in R; New upgrade to Version 3.2.1; See [CRAN](https://CRAN.R-project.org/package=ggplot2)  for updated information
+
+- Online documentation at https://ggplot2.tidyverse.org/
+
+- Download the useful [cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf) created by Rstudio, Inc.
+
+- Also available in Python: http://ggplot.yhathq.com/
+
+
+---
+# Layer-by-Layer Graphics
+
+&lt;img src="ggplot2syntax.png" width="600px" style="display: block; margin: auto;" /&gt;
+
+- **Aesthetics**: mapping data varialbes to aesthetic attributes (position, size, shape, color, ...)
+
+- **Geometric objects**: point, line, polygon, histogram, quantile, bar, ...
+
+- **Statistical transformations**: bin, boxplot, density, contour, function, ...
+
+- Other components for ggplots: **scales** (mapping values of the data to visual values for each aesthetic, e.g. position, color, fill and shape scales), **coordinate system** (cartesian, polar, map projection, ..); **facet** (conditioning display split data in multi-panels; theme (control non-data visual elements (title, axes, tick, ...)
+
+
+---
+# Base, Lattice and ggplot2 styles (first impression)
+
+.pull-left[
+
+```r
+par(mar=c(1,3,1,0))
+hist(iris$Sepal.Length) # Base graphics
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+
+
+```r
+library(lattice)
+histogram(data=iris, ~Sepal.Length|Species) 
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+
+```r
+library(ggplot2)
+ggplot(data=iris,
+       aes(x=Sepal.Length, fill=Species)) + 
+  geom_histogram(bins=8) 
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+
+
+
+---
+# You Will Learn ... 
+
+- R:ggplot2 provides two ways/levels to build graphs:
+
+  - qplot() - quick plot, supplies many defaults
+
+  - ggplot() - grammar of graphics plot, with more controls
+
+- Options and themes for making sophisticated ggplot2 graphs
+
+- Later in this course, ggplot2 will also be used for animated/interactive plots
+
+
+---
+class: center, middle
+
+# II. Quick plots with qplot()
+
+---
+# Quick Plots with qplot()
+
+- qplot() is analog to base plot(), where "q" means quick
+
+- qplot() may create a quick plot with minimum typing
+
+- It defines a plot in a single call with the basic syntax:
+
+&lt;p style="text-align:center;color:red;"&gt;
+qplot(dataframe, variables, [geom], options)
+&lt;/p&gt;
+
+- Automatic use of default settings to make life easier.
+
+- A sensible geom will be picked by default if it is not supplied.
+
+
+---
+# Histogram
+
+
+
+```r
+p1 = qplot(data = iris, Sepal.Length, geom="histogram") 
+p2 = qplot(data = iris, Sepal.Length, fill = Species, bins = 8)  # default geom
+p3 = qplot(data = iris, Sepal.Length, facets = .~Species, binwidth = 0.5)  
+grid.arrange(p1,p2,p3, ncol=3)
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
+
+- Histogram is the sensible geom for continuous variables
+
+- Automatic color setting (color/fill are grouping variables in ggplot2)
+
+- Faceting is similar to the conditioning function in Lattice
+
+---
+# Density plot
+
+
+```r
+qplot(data = iris, Sepal.Length, geom = "density",  fill = Species) 
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+# Boxplot with Grouping
+
+
+```r
+p1 = qplot(data = iris, Species, Sepal.Width, geom="boxplot", main="Boxplot")  
+p2 = qplot(data = iris, Species, Sepal.Width, geom="violin", main="Violin Plot")
+grid.arrange(p1,p2,ncol=2)
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
+
+- Following data are x (grouping) and y (response) variables
+
+
+---
+# Bar plot for categoricla variables
+
+
+```r
+qplot(data = subset(iris, Sepal.Length&gt;5), Species, geom="bar",  fill=Species)  
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
+
+- Bar is the sensible geom for categorical variables
+
+---
+# Scatter plot
+
+
+```r
+p1 = qplot(data = iris, Sepal.Length, Petal.Length, geom = "point")  
+p2 = qplot(data = iris, Sepal.Length, Petal.Length, geom = c("point", "smooth"))
+p3 = qplot(data = iris, Sepal.Length, Petal.Length, geom = c("point", "smooth"), 
+           color = Species)  # Color as a grouping variable
+grid.arrange(p1,p2,p3,ncol=3)
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /&gt;
+
+- Multiple geoms can be added together ... 
+
+  
+
+---
+class: center, middle
+
+# III. Layer-by-layer ggplot()
+
+
+
+---
+# Key concepts/inputs for a ggplot graph: 
+
+- **Data**: a data.frame to visualize  
+
+- **Aesthetics**: mapping varialbes of the data to aesthetic attributes (position, size, shape, color, fill, transparency, ...)  
+
+- **Scales**: mapping values of the data to visual values for each aesthetic (e.g. position, color, fill and shape scales)  
+
+- **Geometric objects**: point, line, polygon, histogram, quantile, bar, ...  
+
+- **Statistical transformations**: bin, boxplot, density, contour, function, ...  
+
+- **Coordinate system**: Cartesian, polar, map projection, ...  
+
+- **Facet**: display split data in multi-panels (aka conditioning)  
+
+- **Theme**: control non-data visual elements (title, axes, tick, ...)
+
+
+---
+# Layer-by-layer Syntax
+
+- ggplot() builds a plot layer by layer, with the syntax:
+
+&lt;div align="center"&gt;
+&lt;img src="ggplot2syntax.png" width=960px&gt; &lt;br /&gt;
+&lt;/div&gt;
+
+- ggplot() provides more control than qplot()
+
+- ggsave() the last plot() with formats .png, .jpg, .pdf, ...
+
+
+---
+# Layer-by-Layer Scatterplot
+
+
+```r
+p0 = ggplot(iris, aes(x=Sepal.Length, y=Petal.Length))  
+p1 = p0 + geom_point(aes(color=Species)) + ggtitle("Add geom_point with coloring")
+p2 = p1 + geom_smooth(aes(color=Species)) + ggtitle("Add geom_smooth")
+p3 = p2 + theme_bw() + ggtitle("Add a theme") 
+p4 = p3 + facet_wrap(~Species) + ggtitle("Add multipanel facets")
+grid.arrange(p1, p2, p3, p4, nrow=2, ncol=2)  
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+# Histogram, Freqpoly and Density plots
+
+
+```r
+p1 = ggplot(iris, aes(Sepal.Length, fill=Species)) + geom_histogram(binwidth = 0.5) 
+p2 = ggplot(iris, aes(Sepal.Length, color=Species)) + geom_freqpoly(binwidth = 0.5) 
+p3 = ggplot(iris, aes(Sepal.Length, fill=Species)) + geom_density(alpha=1/3) 
+grid.arrange(p1, p2, p3, ncol=3)
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto;" /&gt;
+
+- Differentiate between fill and color usages 
+
+- The option alpha in [0,1] sets the degree of transparency 
+
+
+---
+# Boxplot
+
+
+```r
+iris$SepalFlag = iris$Sepal.Length&gt;5
+p1 = ggplot(iris, aes(x=Species, y=Petal.Length, color=Species)) + 
+  geom_boxplot(notch = T, show.legend = F) 
+p2 = ggplot(iris, aes(x=Species, y=Petal.Length, color=SepalFlag)) + geom_boxplot() 
+grid.arrange(p1, p2, ncol=2)
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+# Bar Chart
+
+
+```r
+p1 = ggplot(iris, aes(Species, fill=SepalFlag)) + geom_bar(position = "stack") 
+p2 = ggplot(iris, aes(Species, fill=Sepal.Length, group=Sepal.Length)) + geom_bar()  
+grid.arrange(p1, p2, ncol=2)
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
+
+- geom_bar: position = "stack" (default), "fill", "dodge" 
+
+- Color bar is genrated for  continuous grouping variable 
+
+
+
+---
+class: center, middle
+
+# IV. Options and themes
+
+---
+# Options and Themes
+
+Many options are available for polishing the graphs and making them sophisticated.
+
+
+```r
+p1 = ggplot(iris, aes(x=Sepal.Length, y=Petal.Length, colour=Species)) + 
+  geom_point() + stat_smooth(method="lm", se=F) +
+  labs(title="Iris Flower") + 
+  geom_text(aes(7.3, 1.6), label="STAT3622", size=6, color="gray50")
+p2 = p1 + geom_point() + theme_bw() +
+  theme(panel.grid= element_blank()) + scale_color_manual(values = c(2,3,4)) 
+grid.arrange(p1, p2, ncol=2)
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+# Themes
+
+
+```r
+library(ggthemes)
+p1 +  theme_solarized(light = F) + scale_colour_solarized("red")  # "Solarized Theme"
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-17-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+# Themes (Continued)
+- Wall Street Journal theme and Economist theme ... 
+
+
+```r
+p2 = p1 + theme_wsj()  #  "WSJ Theme"
+p3 = p1 + theme_economist() + scale_colour_economist()  # "Economist Theme"
+grid.arrange(p2, p3, ncol=2)
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-18-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+class: center, middle
+
+# Thank you! 
+
+Q&amp;A or Email ajzhang@hku.hk。
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,177 @@
+---
+title: 'Lecture 8: Case Study - HK Home Prices'
+author: '[Dr. Aijun Zhang](http://www.statsoft.org) - [STAT3622 Data Visualization](http://www.statsoft.org/teaching/stat3622/)'
+date: "31 March 2020"
+output:
+  html_document:
+    highlight: tango
+    mathjax: null
+    number_sections: yes
+    theme: paper
+    toc: yes
+    toc_depth: 2
+---
+
+<style>
+  body {font-size: 14pt; }
+</style>
+
+
+```{r setup, include=FALSE}
+options(width=120)
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, message=FALSE)
+```
+
+```{r fig.align="center", out.width = "500px", echo=FALSE}
+knitr::include_graphics("HKHousing.jpg")  
+``` 
+
+- Purpose of study: to demonstrate geographical/spatiotemporal data visualization.
+ 
+ 
+# Hong Kong Centa-City Index Data
+
+
+
+```{r fig.align="center", out.width = "800px", echo=FALSE}
+knitr::include_graphics("CentaData.jpg")  
+``` 
+
+
+
+**Data source:** [Centadata](http://www1.centadata.com/cci/cci_e.htm) by HK Centaline Agency Limited. 
+
+**Centa-City Leading Sub-index by Regions:**
+
+- HK (Hong Kong Island): CW, EA, SO, WC
+
+- KL (Kowloon): SS, KC, KU, WT, YT
+
+- NTE (New Territories East): ST, TP, SK, NO
+
+- NTW (New Territories West): TW, KI, TM, YL, IS
+
+**Home Prices for Selected Estates:** In each of 4 regions, we pick 3 estates and download their historical weekly prices. URL: http://202.72.14.52/p2/cci/SearchHistory.aspx
+
+
+# Interactive Time Series Visualization
+
+```{r fig.align="center", fig.width=9, fig.asp=0.7}
+library(plotly)
+library(shiny)
+library(xts)
+DataX = read.csv("HKHomeCCLI.csv")
+TsX = xts(DataX[,-1], order.by=as.Date(DataX[,1], "%Y/%m/%d"))
+library(dygraphs)
+dygraph(TsX, main = "HK Home Price: Centa-City Leading Index by Regions") %>%
+      dyRangeSelector(dateWindow = c("1994-01-01", "2020-03-31")) %>%
+      dyOptions(colors = c("red", "green", "blue", "cyan"))
+```
+
+
+```{r fig.align="center", fig.width=9, fig.asp=0.7}
+DataX %>% plot_ly(x = ~Date, y = ~HK, name="HK Island", type = "scatter", mode="lines") %>% 
+  add_trace(y = ~KL, name="Kowloon", type = "scatter") %>% 
+  add_trace(y = ~NTE, name="New Territoryies (East)", type = "scatter") %>% 
+  add_trace(y = ~NTW, name="New Territoryies (West)", type = "scatter") %>% 
+  layout(legend = list(x = 0.02, y = 0.98),
+         title = "HK Centa-City Leading Index by Regions")
+```  
+
+
+
+
+# Dynamic Map Visualization 
+
+**Load Map Visualization with Region Defintion**
+
+```{r fig.width=12, fig.asp=0.8, echo=T, eval=T}
+library(ggplot2); library(sp)
+hkmapraw = readRDS("HKG_adm1.rds") 
+meta = data.frame(id=hkmapraw$ID_1, Code=hkmapraw$HASC_1)
+meta$Region = "NTW"
+meta$Region[meta$Code %in% c("HK.ST", "HK.TP", "HK.SK", "HK.NO")] = "NTE"
+meta$Region[meta$Code %in% c("HK.CW", "HK.EA", "HK.SO", "HK.WC")] = "HK"
+meta$Region[meta$Code %in% c("HK.SS", "HK.KC", "HK.KU", "HK.WT", "HK.YT")] = "KL"
+meta$Region=as.factor(meta$Region)
+hkmap = merge(fortify(hkmapraw), meta, by="id") 
+hkmap$rowid = seq(1, dim(hkmap)[1])
+summary(hkmap)
+```
+
+
+```{r fig.align="center", fig.width=7, fig.asp=0.8, echo = T, eval=T}
+ggplot(hkmap, aes(long, lat, group=group, fill=Region)) + geom_polygon()
+```
+
+**Customize the map region colors by home prices**:
+
+```{r fig.align="center", fig.width=7, fig.asp=0.8, eval=FALSE}
+library(magick)
+img <- image_graph(800, 600, res = 72)
+# iidx = c(seq(dim(DataX)[1], 1, -104), 1)
+iidx = seq(70, 1, -4)
+for (i in iidx){
+  TmpX = data.frame(Region=names(DataX)[-1], Price=as.numeric(DataX[i,-1]))
+  MapDataX = merge(hkmap, TmpX, by="Region", sort=FALSE)
+  p = ggplot(MapDataX[order(MapDataX$rowid),], aes(long, lat, group=group, fill=Price)) + 
+    geom_polygon() +
+    scale_fill_gradient(limits=c(150,205), low = "green", high = "red") +
+    ggtitle(paste("Home Price Index by Regions as of", DataX$Date[i])) + 
+    theme(plot.title = element_text(size = 20, face = "bold"))
+  print(p)
+}
+dummy = dev.off() 
+img %>% image_trim() %>%  image_animate(fps = 1, loop=1) %>% image_write("HomePriceMap.gif")
+```
+
+```{r fig.align="center", out.width = "700px", echo=FALSE}
+knitr::include_graphics("HomePriceMap.gif")  
+``` 
+
+
+
+
+
+# Temporal and Spatial Variations
+
+Using the data of home prices for 12 selected estates 
+
+```{r}
+DataX = read.csv("HKHomePrice.csv")
+DataX$Date = as.POSIXlt(DataX$Date, format="%d/%m/%Y")  # handle date/time in R
+DataX = DataX[order(DataX$Date), ]
+DataX = DataX[DataX$Date >= "2014-01-01", ]
+head(DataX)
+```
+
+- Temporal
+
+```{r fig.align="center", fig.width=10, fig.asp=0.6}
+n = dim(DataX)[1]
+m = dim(DataX)[2]-1
+matplot(DataX[, -1], type="l", lty=1, col=rainbow(m),  xaxt="n", ylab="", xlim=c(1,n+10))
+axis(1,at=1:n,labels=format(DataX$Date, "%Y%m"))
+text(n, tail(DataX[,-1], 1), names(DataX)[-1], p=4, cex=0.6)
+title(main="Home Prices for Selected Estates in Hong Kong", 
+      xlab="Time", ylab="Unit Price (net area)")
+```
+
+- Spatial
+
+```{r fig.align="center", fig.width=9, fig.asp=0.8}
+boxplot(DataX[,-1], col=rainbow(m),  
+        main="Median Prices and Variations Among and Within Estates")
+```
+
+ 
+
+**Space-Time Heatmap:**
+
+<!-- - aka. Hovmöller diagram -->
+
+```{r fig.align="center", fig.width=8, fig.asp=0.8}
+tmp = as.matrix(DataX[,-1])
+par(mar=c(1,1,1,1)); image(tmp, col=terrain.colors(m), axes=FALSE) 
+text(0, seq(0,1,length.out=m), names(DataX)[-1], p=4, cex=1)
+```

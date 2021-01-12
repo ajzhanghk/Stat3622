@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>STAT3622 Data Visualization (Lecture 2)</title>
+    <meta charset="utf-8" />
+    <meta name="author" content=" Dr. Aijun Zhang  The University of Hong Kong" />
+    <meta name="date" content="2020-02-04" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="..\stat3622-style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# STAT3622 Data Visualization (Lecture 2)
+## Exploratory Data Analysis
+### <br>Dr. Aijun Zhang<br> The University of Hong Kong
+### 4 February 2020
+
+---
+
+
+
+
+# What's covered in this lecture?
+
+&lt;img style="float: right; width: 300px; padding:10px 100px 0 0;" src="LogoEDA.jpg"&gt;
+
+
+I. Exploratory Data Analysis
+
+  - John Tukey
+  - Exploratory Data Analysis
+
+II. Simple Base Graphics
+  - Iris Dataset
+  - Basic R Plots
+
+III. Using R:Lattice Package   
+  - Conditioning and Grouping
+  - Cloud and Level Plots
+ 
+  
+---
+class: center, middle
+
+# I. Exploratory Data Analysis  
+
+ 
+---
+#  Review: Data Science Workflow
+
+&lt;img src="DSWorkflow.jpg" width="66%" style="display: block; margin: auto;" /&gt;
+
+---
+# Roles of Data Visualization
+
+- Role 1: Exploratory data analysis (pre stage);
+
+- Role 2: Visual presentation of results (after stage).
+
+- John W. Tukey (1977; Exploratory Data Analysis):  "The greatest value of a picture is when it forces us to notice what we never expected to see.”
+
+
+.pull-left[
+&lt;img src="JohnTukey.png" width="47%" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+&lt;img src="JohnTukeyEDA.jpg" width="40%" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+# John Tukey (1915-2000)
+
+
+&lt;img style="float: left; width: 300px; margin-top: 20px; margin-right:80px; " src="JohnTukey.png"&gt;
+
+
+- Proposed “Exploratory Data Analysis”  
+
+- Coined terms: Boxplot, Stem-and-Leaf plot, ANOVA (Analysis of Variance)  
+
+- Coined terms “Bit” and “Software”  
+
+- Co-Developed Fast Fourier Transform algorithm, Projection Pursuit, Jackknife estimation  
+
+- Famous quote: “The best thing about being a statistician is that you get to play in everyone's backyard.”
+ 
+- https://en.wikipedia.org/wiki/John_Tukey 
+
+
+---
+# John Tukey: The Future of Data Analysis (1962)
+
+&lt;img src="JohnTukey1962.png" width="800px" style="display: block; margin: auto;" /&gt;
+ 
+- Reference: [Donoho, David (2017). "50 Years of Data Science" at *JCGS*, **26**(4), 745-766.](https://www.tandfonline.com/doi/abs/10.1080/10618600.2017.1384734)
+ 
+---
+# John Tukey: Exploratory Data Analysis (1977)
+
+&lt;img style="float: left; width: 300px; margin-right:50px; " src="JohnTukeyEDA.jpg"&gt;
+&lt;img style="float: right; width: 380px; margin-left:10px; " src="JohnTukeyEDAplots.jpg"&gt;
+
+- Five-number summary
+
+- Stem-and-Leaf plot
+
+- Scatter plot
+
+- Box-plot, Outliers
+
+- Residual plot
+
+- Smoother
+
+- Bag plot
+
+ 
+---
+# Example: Anscombe Dataset
+ 
+
+
+```
+## Anscombe Dataset:
+```
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; x1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; y1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; x2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; y2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; x3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; y3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; x4 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; y4 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.04 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.46 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.58 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.95 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.77 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.76 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.58 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.74 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12.74 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.71 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.81 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.77 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.11 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.84 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.33 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.26 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.81 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.47 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.96 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.84 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.04 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.24 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.13 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.08 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.25 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.26 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.39 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 19 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12.50 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10.84 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.13 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.56 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.82 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.26 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.42 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.91 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.68 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.74 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.73 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.89 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+Source: Anscombe, F. J. (1973). Graphs in statistical analysis. *American Statistician*, **27**, 17-21.
+
+
+---
+# Example: Anscombe Dataset (Descriptive)
+ 
+
+
+```
+## Mean and standard deviation:
+```
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; x1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; y1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; x2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; y2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; x3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; y3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; x4 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; y4 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; mean &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.50 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.50 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.50 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.50 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; sd &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.32 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.03 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.32 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.03 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.32 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.03 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.32 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.03 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+```
+## x-y correlation:
+```
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; rho1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; rho2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; rho3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; rho4 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0.82 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.82 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.82 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.82 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+# Example: Anscombe Dataset (Graphic)
+
+&lt;img src="index_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+# Exploratory Data Analysis
+
+The EDA is a statistical approach to make sense of data by using a variety of techniques (mostly graphical). It may help us 
+
+- Assess assumption about variables distribution  
+
+- Identify relationship between variables   
+
+- Extract important variables  
+
+- Suggest use of appropriate models  
+
+- Detect problems of collected data (e.g. outliers, missing data, measurement errors)
+
+
+---
+# Statistical Graphics
+
+- **Univarite**  
+  * Histogram, Stem-and-Leaf, Dot, Q-Q, Density plots 
+  * Boxplot, Box-and-whisker
+  * Bar, Pie, Polar, Waterfall charts
+
+- **Bivariate**  
+  * XYplot, Line, Area, Scatter, Bubble charts
+  
+- **Trivariate**  
+  * 3D Scatter, Contour, Level/Heatmap, Surface plots
+
+
+
+---
+# Which Chart to Use?
+
+&lt;img src="EDA_ChartSuggestion.jpg" width="700px" style="display: block; margin: auto;" /&gt;
+
+
+---
+class: center, middle
+
+# II. Simple Base Graphics
+
+
+
+---
+# Iris Dataset 
+
+&lt;img src="IrisFlower.png" width="600px" style="display: block; margin: auto;" /&gt;
+
+
+```r
+DataX = iris   # ?iris
+str(DataX)
+```
+
+```
+## 'data.frame':	150 obs. of  5 variables:
+##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+##  $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
+```
+
+---
+
+```r
+dim(DataX)
+```
+
+```
+## [1] 150   5
+```
+
+```r
+head(DataX)  # tail
+```
+
+```
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa
+```
+
+```r
+summary(DataX)
+```
+
+```
+##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width          Species  
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100   setosa    :50  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300   versicolor:50  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300   virginica :50  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199                  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800                  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500
+```
+
+
+---
+# Basic R Plots: Histogram and Density Plot
+
+
+```r
+x = DataX$Sepal.Length # a continuous variable
+par(mfrow=c(1,3))
+hist(x, main='Histogram (Default)')   
+hist(x, breaks=20, col=5, main='More Bins and Coloring') 
+hist(x, breaks=20, freq=F, main='Histogram plus Density Plot')   # using freq=FALSE
+lines(density(x), col=2, lty=1, lwd=2)  #add the density curve
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+# Basic R Plots: Boxplot  
+
+
+```r
+par(mfrow=c(1,3))
+boxplot(DataX$Sepal.Width, main='Boxplot of Sepal.Width')  # Outliers
+boxplot(DataX[,1:4], col=c(2,3,4,5), main='Side-by-side Boxplot')  
+boxplot(Sepal.Width~Species, DataX, col=c(6,7,8), main="Boxplot with Grouping") 
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+# Basic R Plots: Pie and Bar Charts 
+
+
+```r
+DataX$Flag = DataX$Sepal.Length&gt;5 # Create a binary flag
+par(mfrow=c(1,3))
+pie(table(DataX$Species[DataX$Flag]), col=c(2,3,4))
+barplot(table(DataX$Species[DataX$Flag]), col=c(5,6,7))
+barplot(table(DataX$Species, DataX$Flag), col=c(5,6,7), beside=T)
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+# Relationship Between Variables
+
+
+```r
+x = DataX$Petal.Length; y = DataX$Petal.Width; z = DataX$Species
+par(mfrow=c(1,2)); par(mar=c(4,4,1,4))
+plot(x, y, xlab="Petal.Length", ylab="Petal.Width") 
+abline(coef(lm(y~x)), col=1, lty=2)
+plot(x, y, col=c(2,3,4)[z], pch=20, cex=2.0, xlab="Petal.Length", ylab="Petal.Width") 
+abline(lm(y~x), col=1, lty=2) 
+legend("topleft", levels(z), pch=20, col=c(2,3,4))
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+# Pairwise Scatter Plot
+
+.pull-left[
+
+```r
+plot(DataX, col=DataX$Species,
+     main="Pairwise Scatter Plot") 
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+
+```r
+pairs(DataX[,1:4], panel = panel.smooth,
+      col = c(4,5,6)[DataX$Species], 
+      main="More Sophisticated") 
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-17-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+
+
+---
+class: center, middle
+
+# III. Using R:Lattice Package 
+
+
+---
+# R:Lattice
+
+
+
+&lt;img style="float: left; width: 240px; margin-top: 20px; margin-right:80px; " src="BookLattice.png"&gt;
+
+
+- Using trellis graphs for multivariate data  
+
+- Multipanel conditioning and grouping  
+
+- Elegant high-level data visualization  
+
+- Covering most of statistical charts  
+
+- Figures and Codes can be found at  
+http://lmdvr.r-forge.r-project.org/
+
+- However, plot customization are not so straightforward
+
+
+
+
+---
+# Univariate Distributions
+
+
+```r
+library(lattice); library(gridExtra)
+p1 = histogram(DataX$Sepal.Length)
+p2 = bwplot(DataX$Sepal.Length) 
+grid.arrange(p1, p2, ncol=2)
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-18-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+# Histogram with Conditioning
+
+```r
+histogram(data=DataX, ~Sepal.Length|Species, breaks=12, layout = c(3, 1))
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-19-1.png" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+# Density plot with Grouping
+
+```r
+densityplot(data=DataX, ~Sepal.Length, groups=Species,  
+            plot.points=F, auto.key=list(space="top", columns=3))
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-20-1.png" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+# Boxplot with Grouping
+
+```r
+bwplot(data=DataX, Sepal.Width~Species) 
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-21-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+# Bivariate plot with Grouping
+
+```r
+xyplot(data=DataX, Sepal.Length ~ Petal.Length, groups = Species,  
+       type = c("p", "smooth",  "g"),  
+       auto.key = list(space="top", columns=3)) # grouping
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-22-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+# Bivariate plot with Conditioning
+
+```r
+xyplot(data=DataX, Sepal.Length ~ Petal.Length|Species, 
+       type=c("p", "smooth",  "g"), layout=c(1,3)) # conditioning
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-23-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+# Trivariate 3D Plot
+
+```r
+cloud(data=DataX, Sepal.Length ~ Sepal.Length * Petal.Width, groups = Species, 
+      auto.key = list(space="top", columns=3), panel.aspect = 0.8)
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-24-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+# Trivariate Heatmap  
+
+```r
+dist = as.matrix(dist(DataX[,3:4]))
+levelplot(dist, colorkey = T, col.regions = terrain.colors,
+          scales = list(at=c(0,0),tck = c(0,0)), 
+          xlab="",ylab="",main="Levelplot of Pairwise Distance Matrix")
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-25-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+class: center, middle
+
+# Thank you! 
+
+Q&amp;A or Email ajzhang@hku.hk。
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

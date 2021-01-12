@@ -1,0 +1,15 @@
+base
+maps
+ggplot2
+mapdata
+sp
+knitr
+leaflet
+plotly
+bindrcpp
+zoo
+xts
+dygraphs
+shiny
+d3heatmap
+htmltools

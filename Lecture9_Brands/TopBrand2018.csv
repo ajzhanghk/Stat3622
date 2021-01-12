@@ -1,0 +1,501 @@
+"Rank17","Rank16","Company","Logo","Flag","Value17","Value16","Rate17","Rate16"
+"1","3","Amazon","/images/profile/logo/amazon_logo_cms.jpg","/images/flags/us.png","150811","106396","22","22"
+"2","2","Apple","/images/profile/logo/apple_logo4_2.png","/images/flags/us.png","146311","107141","24","23"
+"3","1","Google","/images/profile/logo/google4.png","/images/flags/us.png","120911","109470","24","24"
+"4","6","Samsung Group","/images/profile/logo/samsung_circle.jpg","/images/flags/kr.png","92289","66218","24","22"
+"5","9","Facebook","/images/profile/logo/facebook12.jpg","/images/flags/us.png","89684","61998","24","23"
+"6","4","AT&T","/images/profile/logo/atandt3.png","/images/flags/us.png","82422","87016","22","23"
+"7","5","Microsoft","/images/profile/logo/microsoft_best_global_brand.png","/images/flags/us.png","81163","76265","24","23"
+"8","7","Verizon","/images/profile/logo/verizon_logo22.jpg","/images/flags/us.png","62826","65875","22","22"
+"9","8","Walmart","/images/profile/logo/walmart_logo_cms.jpg","/images/flags/us.png","61480","62211","21","21"
+"10","10","ICBC","/images/profile/logo/icbc.jpg","/images/flags/cn.png","59189","47832","24","23"
+"11","14","China Construction Bank","/images/profile/logo/china_construction_bank.png","/images/flags/cn.png","56789","41377","23","22"
+"12","22","Alibaba","/images/profile/logo/alibabagroup.png","/images/flags/cn.png","54921","34859","22","21"
+"13","11","China Mobile","/images/profile/logo/chinamobile3.png","/images/flags/cn.png","53226","46734","23","23"
+"14","13","Wells Fargo","/images/profile/logo/wells_fargo_logo_cms.jpg","/images/flags/us.png","44098","41618","22","21"
+"15","20","Mercedes-Benz","/images/profile/logo/mercedes1_logo_cms.jpg","/images/flags/de.png","43930","35544","22","22"
+"16","12","Toyota","/images/profile/logo/toyota_logo_cms.jpg","/images/flags/jp.png","43701","46255","22","22"
+"17","16","BMW","/images/profile/logo/bmw_1.jpg","/images/flags/de.png","41790","39335","23","22"
+"18","28","Bank of China","/images/profile/logo/bank_of_china.jpg","/images/flags/cn.png","41750","31250","23","23"
+"19",NA,"State Grid","/images/profile/logo/state_grid.png","/images/flags/cn.png","40944","0","21","0"
+"20","15","NTT Group","/images/profile/logo/ntt_group.jpg","/images/flags/jp.png","40872","40542","21","21"
+"21","47","Tencent","/images/profile/logo/tencent2.png","/images/flags/cn.png","40774","22287","23","23"
+"22","18","T (Deutsche Telekom)","/images/profile/logo/t_telekom.jpg","/images/flags/de.png","40152","36433","21","21"
+"23","17","Shell","/images/profile/logo/shell_logo.svg_cms.jpg","/images/flags/nl.png","39423","36783","22","22"
+"24","24","Chase","/images/profile/logo/chase.jpg","/images/flags/us.png","38842","33737","23","22"
+"25","39","Huawei","/images/profile/logo/huawei_logo_cms.jpg","/images/flags/cn.png","38046","25230","22","22"
+"26","33","Agricultural Bank of China","/images/profile/logo/agricultural_bank_of_china.jpg","/images/flags/cn.png","37321","28511","23","21"
+"27","30","The Home Depot","/images/profile/logo/home_depo.jpg","/images/flags/us.png","33748","30216","22","22"
+"28","40","Volkswagen","/images/profile/logo/vw.jpg","/images/flags/de.png","33670","25014","23","23"
+"29","29","Bank of America","/images/profile/logo/bofa_cms.jpg","/images/flags/us.png","33289","30273","22","22"
+"30","48","Ping An (Conglomerate)","/images/profile/logo/ping_an_logo.jpg","/images/flags/cn.png","32609","22273","22","21"
+"31","23","Disney","/images/profile/logo/disney_logo_1.jpg","/images/flags/us.png","32590","34454","24","24"
+"32","19","IBM","/images/profile/logo/ibm_logo_cms.jpg","/images/flags/us.png","32478","36112","22","21"
+"33","38","Starbucks","/images/profile/logo/starbucks2.png","/images/flags/us.png","32421","25615","23","23"
+"34","21","GE","/images/profile/logo/general_electric.jpg","/images/flags/us.png","32005","35318","23","23"
+"35","32","PetroChina","/images/profile/logo/petrochina2.png","/images/flags/cn.png","31177","29003","21","21"
+"36","34","Citi","/images/profile/logo/citi5.png","/images/flags/us.png","30783","27674","21","21"
+"37","25","Marlboro","/images/profile/logo/marlb1_logo_cms.jpg","/images/flags/us.png","30513","32471","21","21"
+"38","26","Coca-Cola","/images/profile/logo/cocacola.jpg","/images/flags/us.png","30378","31885","23","23"
+"39","37","Oracle","/images/profile/logo/oracle5.png","/images/flags/us.png","29634","25878","20","20"
+"40","27","Nike","/images/profile/logo/nike.jpg","/images/flags/us.png","28030","31762","23","24"
+"41","36","Xfinity","/images/profile/logo/xfinity_logo_cms.jpg","/images/flags/us.png","26121","26180","21","21"
+"42","111","YouTube","/images/profile/logo/2000px_youtube_logo_2017_cms.jpg","/images/flags/us.png","25887","12123","23","23"
+"43","35","Mitsubishi (Conglomerate)","/images/profile/logo/mitsu.jpg","/images/flags/jp.png","25280","27653","19","18"
+"44","54","China State Construction","/images/profile/logo/cscec_bd.png","/images/flags/cn.png","24981","21050","20","19"
+"45","61","McDonald's","/images/profile/logo/mcds1.png","/images/flags/us.png","24872","20291","24","23"
+"46","42","IKEA","/images/profile/logo/ikea.jpg","/images/flags/se.png","24351","24119","21","20"
+"47","70","China Telecom","/images/profile/logo/china_telecom.jpg","/images/flags/cn.png","23979","17599","21","21"
+"48","31","Sinopec","/images/profile/logo/sinopec.jpg","/images/flags/cn.png","23640","29555","20","21"
+"49","100","WeChat","/images/profile/logo/wechat4.png","/images/flags/cn.png","22415","13189","23","22"
+"50","66","PwC","/images/profile/logo/pwc_image_cms.jpg","/images/flags/us.png","22287","18510","24","24"
+"51","52","Orange","/images/profile/logo/orange.jpg","/images/flags/fr.png","22206","21526","22","22"
+"52","53","Honda","/images/profile/logo/honda_logo_cms.jpg","/images/flags/jp.png","22132","21318","22","22"
+"53","60","Intel","/images/profile/logo/intel.jpg","/images/flags/us.png","22059","20369","23","23"
+"54","49","UPS","/images/profile/logo/ups_logo_with_out_background_cms.jpg","/images/flags/us.png","22003","22128","22","22"
+"55","45","Siemens","/images/profile/logo/siemens.jpg","/images/flags/de.png","21956","23088","23","22"
+"56","107","Moutai","/images/profile/logo/kweichowmoutai.png","/images/flags/cn.png","21243","12283","22","22"
+"57","113","Baidu","/images/profile/logo/baidu.png","/images/flags/cn.png","21046","11813","23","21"
+"58","65","Total","/images/profile/logo/totallogo.png","/images/flags/fr.png","20971","18514","22","22"
+"59","77","Deloitte","/images/profile/logo/deloitte_logo_cms.jpg","/images/flags/us.png","20838","16776","24","23"
+"60","58","VISA","/images/profile/logo/visa_2014_logo_detail_cms.jpg","/images/flags/us.png","20651","20660","24","24"
+"61","44"," CVS Health","/images/profile/logo/cvs_health_logo_cms.jpg","/images/flags/us.png","20603","23286","21","21"
+"62","85","Allianz","/images/profile/logo/allianz_final_logo_cms.jpg","/images/flags/de.png","20229","15197","22","20"
+"63","67","Pepsi","/images/profile/logo/pepsi4.png","/images/flags/us.png","20035","18470","23","23"
+"64","79","Boeing","/images/profile/logo/boeing.jpg","/images/flags/us.png","19936","16333","24","23"
+"65","97","JD.com","/images/profile/logo/jd.com_jd_logo_cms.jpg","/images/flags/cn.png","19623","13377","17","18"
+"66","64","BP","/images/profile/logo/bp.jpg","/images/flags/gb.png","19610","18857","21","21"
+"67","56","Cisco","/images/profile/logo/cisco_2.jpg","/images/flags/us.png","19411","20734","21","21"
+"68","41","Nissan","/images/profile/logo/nissan.jpg","/images/flags/jp.png","19376","24768","21","22"
+"69","62","Nestlé","/images/profile/logo/nestle_logo_cms.jpg","/images/flags/ch.png","19370","19416","22","22"
+"70","69","Bosch","/images/profile/logo/bosch_logo_cms.jpg","/images/flags/de.png","19341","17991","21","22"
+"71","106","Porsche","/images/profile/logo/porsche.jpg","/images/flags/de.png","19055","12396","23","23"
+"72","63","H&M","/images/profile/logo/h_m.jpg","/images/flags/se.png","18959","19177","23","23"
+"73","59","SoftBank","/images/profile/logo/softbank.jpg","/images/flags/jp.png","18928","20621","21","20"
+"74","51","Vodafone","/images/profile/logo/vodafone_logo_cms.jpg","/images/flags/gb.png","18744","21831","21","21"
+"75","96","UnitedHealthcare","/images/profile/logo/united_healthcare_image_cms.jpg","/images/flags/us.png","18614","13379","20","20"
+"76","57","HSBC","/images/profile/logo/hsbc.jpg","/images/flags/gb.png","18305","20688","20","21"
+"77","73","FedEx","/images/profile/logo/fedex.jpg","/images/flags/us.png","18170","17092","21","21"
+"78","50","Chevron","/images/profile/logo/chevronlogo.png","/images/flags/us.png","18148","22058","22","22"
+"79","43","Hyundai Group","/images/profile/logo/hyundai3.png","/images/flags/kr.png","17754","23395","19","19"
+"80","76","Johnson's","/images/profile/logo/johnson_s.jpg","/images/flags/us.png","17663","16829","24","23"
+"81","84","JP Morgan","/images/profile/logo/j.p._morgan.jpg","/images/flags/us.png","17651","15710","21","20"
+"82","90","Zara","/images/profile/logo/zara_3.jpg","/images/flags/es.png","17453","14399","23","22"
+"83","46","Ford","/images/profile/logo/ford_logo.jpg","/images/flags/us.png","17294","22432","22","22"
+"84","98","EY","/images/profile/logo/ey_logo.jpg","/images/flags/gb.png","17130","13357","24","23"
+"85","86","SAP","/images/profile/logo/saplogo.png","/images/flags/de.png","17057","15158","19","19"
+"86","82","FOX","/images/profile/logo/fox_logo_cms.jpg","/images/flags/us.png","17007","15814","22","22"
+"87","71","Accenture","/images/profile/logo/accenture_latest_logo.jpg","/images/flags/us.png","16805","17464","21","21"
+"88","110","LG Group","/images/profile/logo/lg_group.jpg","/images/flags/kr.png","16796","12196","21","20"
+"89","91","China Merchants Bank","/images/profile/logo/cmb3.png","/images/flags/cn.png","16673","14269","22","22"
+"90","89","Uber","/images/profile/logo/uber3.png","/images/flags/us.png","16629","14596","20","19"
+"91","75","au","/images/profile/logo/au_japan.png","/images/flags/jp.png","16626","16919","21","22"
+"92","68","Dell","/images/profile/logo/dell_logo2.png","/images/flags/us.png","16356","18186","19","20"
+"93","201","Evergrande Real Estate","/images/profile/logo/evergrande2.png","/images/flags/cn.png","16229","7439","21","20"
+"94","81","Santander","/images/profile/logo/santander2.png","/images/flags/es.png","16200","15929","20","21"
+"95","80","Walgreens","/images/profile/logo/walgreens.jpg","/images/flags/us.png","15546","15969","21","21"
+"96","87","American Express","/images/profile/logo/american_express_logo2.png","/images/flags/us.png","15103","15014","20","21"
+"97","105","Audi","/images/profile/logo/audi3.png","/images/flags/de.png","14951","12546","22","22"
+"98","93","NBC","/images/profile/logo/nbclogo2.png","/images/flags/us.png","14862","13736","24","24"
+"99","112","Shanghai Pudong Development Bank","/images/profile/logo/spdb_logo2.png","/images/flags/cn.png","14772","11963","20","21"
+"100","284","Wuliangye","/images/profile/logo/wuliangye2.png","/images/flags/cn.png","14635","5604","22","20"
+"101","99","MUFG","/images/profile/logo/mufg_logo.png","/images/flags/jp.png",NA,NA,NA,NA
+"102","131","China Life Insurance","/images/profile/logo/chinalife1.png","/images/flags/cn.png",NA,NA,NA,NA
+"103","133","adidas","/images/profile/logo/adidas.jpg","/images/flags/de.png",NA,NA,NA,NA
+"104","101","Tata Group","/images/profile/logo/tata.jpg","/images/flags/in.png",NA,NA,NA,NA
+"105","114","Bank of Communications","/images/profile/logo/bank_of_communications.jpg","/images/flags/cn.png",NA,NA,NA,NA
+"106","92","Lowe's","/images/profile/logo/lowes2.png","/images/flags/us.png",NA,NA,NA,NA
+"107","103","RBC","/images/profile/logo/rbc.jpg","/images/flags/ca.png",NA,NA,NA,NA
+"108","88","Hitachi Group","/images/profile/logo/hitachi.jpg","/images/flags/jp.png",NA,NA,NA,NA
+"109","94","BNP Paribas","/images/profile/logo/bnp.paribas_logofinal.jpg","/images/flags/fr.png",NA,NA,NA,NA
+"110","74","Target","/images/profile/logo/targetlogo.png","/images/flags/us.png",NA,NA,NA,NA
+"111","102","Barclays","/images/profile/logo/barclays.jpg","/images/flags/gb.png",NA,NA,NA,NA
+"112","83","Spectrum","/images/profile/logo/spectrum_logo_cms.jpg","/images/flags/us.png",NA,NA,NA,NA
+"113","78","SK Group","/images/profile/logo/sk_group.jpg","/images/flags/kr.png",NA,NA,NA,NA
+"114","55","ExxonMobil","/images/profile/logo/exxonmobil2.png","/images/flags/us.png",NA,NA,NA,NA
+"115","145","AXA","/images/profile/logo/axa.jpg","/images/flags/fr.png",NA,NA,NA,NA
+"116","115","Chevrolet","/images/profile/logo/chevrolet2.png","/images/flags/us.png",NA,NA,NA,NA
+"117","108","MasterCard","/images/profile/logo/mastercard3.png","/images/flags/us.png",NA,NA,NA,NA
+"118","104","TD","/images/profile/logo/td_bank.png","/images/flags/ca.png",NA,NA,NA,NA
+"119","120","KPMG","/images/profile/logo/kpmg3.png","/images/flags/nl.png",NA,NA,NA,NA
+"120","121","Telstra","/images/profile/logo/telstra_logo_cms.jpg","/images/flags/au.png",NA,NA,NA,NA
+"121","200","Netease 163.com","/images/profile/logo/netease.jpg","/images/flags/cn.png",NA,NA,NA,NA
+"122","128","CRCC","/images/profile/logo/crcc.jpg","/images/flags/cn.png",NA,NA,NA,NA
+"123","95","Costco","/images/profile/logo/costco.jpg","/images/flags/us.png",NA,NA,NA,NA
+"124","130","Renault","/images/profile/logo/renault_cms.jpg","/images/flags/fr.png",NA,NA,NA,NA
+"125","126","Universal","/images/profile/logo/universal_3_logo_png_transparent_cms.jpg","/images/flags/us.png",NA,NA,NA,NA
+"126","129","Sony","/images/profile/logo/sony.jpg","/images/flags/jp.png",NA,NA,NA,NA
+"127","125","Industrial Bank","/images/profile/logo/industrialbank2.png","/images/flags/cn.png",NA,NA,NA,NA
+"128","207","Land Rover","/images/profile/logo/landroverlogo.png","/images/flags/gb.png",NA,NA,NA,NA
+"129","154","Sberbank","/images/profile/logo/sberbank_logo.png","/images/flags/ru.png",NA,NA,NA,NA
+"130","184","Country Garden","/images/profile/logo/countrygardenlogo.png","/images/flags/cn.png",NA,NA,NA,NA
+"131","177","BBVA","/images/profile/logo/bbva_logo_cms.jpg","/images/flags/es.png",NA,NA,NA,NA
+"132","124","Petronas","/images/profile/logo/petronas3.png","/images/flags/my.png",NA,NA,NA,NA
+"133","116","BT","/images/profile/logo/bt.jpg","/images/flags/gb.png",NA,NA,NA,NA
+"134","148","China Unicom","/images/profile/logo/china_unicom.jpg","/images/flags/cn.png",NA,NA,NA,NA
+"135","135","Movistar","/images/profile/logo/movistar_logo_cms.jpg","/images/flags/es.png",NA,NA,NA,NA
+"136","172","Hermès","/images/profile/logo/hermes.jpg","/images/flags/fr.png",NA,NA,NA,NA
+"137","117","Capital One","/images/profile/logo/capital_one.jpg","/images/flags/us.png",NA,NA,NA,NA
+"138","109","Japan Railways Group","/images/profile/logo/jr1_cms.jpg","/images/flags/jp.png",NA,NA,NA,NA
+"139","72","Sumitomo (Conglomerate)","/images/profile/logo/sumitomo_logo_cms.jpg","/images/flags/jp.png",NA,NA,NA,NA
+"140","151","Airbus","/images/profile/logo/airbus5.png","/images/flags/fr.png",NA,NA,NA,NA
+"141","141","Bell","/images/profile/logo/bell_cms.jpg","/images/flags/ca.png",NA,NA,NA,NA
+"142","132","DHL","/images/profile/logo/dhl_logo_cms.jpg","/images/flags/de.png",NA,NA,NA,NA
+"143","155","Carrefour","/images/profile/logo/carrefour2.png","/images/flags/fr.png",NA,NA,NA,NA
+"144","118","Eni","/images/profile/logo/eni.jpg","/images/flags/it.png",NA,NA,NA,NA
+"145","157","Louis Vuitton","/images/profile/logo/louis_vuitton.jpg","/images/flags/fr.png",NA,NA,NA,NA
+"146","136","CBS","/images/profile/logo/cbs22.jpg","/images/flags/us.png",NA,NA,NA,NA
+"147","147","ABC","/images/profile/logo/abctv.jpg","/images/flags/us.png",NA,NA,NA,NA
+"148","190","Netflix","/images/profile/logo/netflix234.jpg","/images/flags/us.png",NA,NA,NA,NA
+"149","137","AIA","/images/profile/logo/aia.jpg","/images/flags/hk.png",NA,NA,NA,NA
+"150","144","China CITIC Bank","/images/profile/logo/china_citic.png","/images/flags/cn.png",NA,NA,NA,NA
+"151","119","CREC","/images/profile/logo/crec2.png","/images/flags/cn.png",NA,NA,NA,NA
+"152","165","Scotiabank","/images/profile/logo/scotiabank.jpg","/images/flags/ca.png",NA,NA,NA,NA
+"153","170","Canon","/images/profile/logo/canon_logo_cms.jpg","/images/flags/jp.png",NA,NA,NA,NA
+"154","182","Warner Bros.","/images/profile/logo/warnerbros2.png","/images/flags/us.png",NA,NA,NA,NA
+"155","127","Sky","/images/profile/logo/sky3.png","/images/flags/gb.png",NA,NA,NA,NA
+"156","123","Anthem","/images/profile/logo/anthem2.png","/images/flags/us.png",NA,NA,NA,NA
+"157","122","Tesco","/images/profile/logo/tesco_cms.jpg","/images/flags/gb.png",NA,NA,NA,NA
+"158","174","EDF","/images/profile/logo/edf3.png","/images/flags/fr.png",NA,NA,NA,NA
+"159","223","Cartier","/images/profile/logo/cartier_3_cms.jpg","/images/flags/fr.png",NA,NA,NA,NA
+"160","162","ING","/images/profile/logo/ing_best_global_brand.jpg","/images/flags/nl.png",NA,NA,NA,NA
+"161","140","L'Oréal","/images/profile/logo/l_oreal.jpg","/images/flags/fr.png",NA,NA,NA,NA
+"162","164","Aetna","/images/profile/logo/aetna_logo_cms.jpg","/images/flags/us.png",NA,NA,NA,NA
+"163","156","Goldman Sachs","/images/profile/logo/goldman.jpg","/images/flags/us.png",NA,NA,NA,NA
+"164","143","ALDI","/images/profile/logo/aldi.jpg","/images/flags/de.png",NA,NA,NA,NA
+"165","198","Booking.com","/images/profile/logo/bookingdotcom.png","/images/flags/us.png",NA,NA,NA,NA
+"166","187","Danone","/images/profile/logo/danone1.jpg","/images/flags/fr.png",NA,NA,NA,NA
+"167","138","American Airlines","/images/profile/logo/american_airlines_1.jpg","/images/flags/us.png",NA,NA,NA,NA
+"168","192","Panasonic","/images/profile/logo/panasonic.jpg","/images/flags/jp.png",NA,NA,NA,NA
+"169","233","Paypal","/images/profile/logo/paypal5.png","/images/flags/us.png",NA,NA,NA,NA
+"170","152","Johnson & Johnson","/images/profile/logo/jnj1.png","/images/flags/us.png",NA,NA,NA,NA
+"171","210","Humana","/images/profile/logo/humana2.png","/images/flags/us.png",NA,NA,NA,NA
+"172","178","Lexus","/images/profile/logo/lexus3.png","/images/flags/jp.png",NA,NA,NA,NA
+"173","175","Philips","/images/profile/logo/philips.jpg","/images/flags/nl.png",NA,NA,NA,NA
+"174","146","UBS","/images/profile/logo/ubs_cms.jpg","/images/flags/ch.png",NA,NA,NA,NA
+"175","194","HP","/images/profile/logo/hp5.png","/images/flags/us.png",NA,NA,NA,NA
+"176","307","CPIC","/images/profile/logo/cpic.jpg","/images/flags/cn.png",NA,NA,NA,NA
+"177","150","Delta","/images/profile/logo/delta_airlines.jpg","/images/flags/us.png",NA,NA,NA,NA
+"178","238","TIM","/images/profile/logo/telecomit.png","/images/flags/it.png",NA,NA,NA,NA
+"179","139","O2","/images/profile/logo/o2logo.jpg","/images/flags/gb.png",NA,NA,NA,NA
+"180","185","Enel","/images/profile/logo/enel_logo.jpg","/images/flags/it.png",NA,NA,NA,NA
+"181","218","Gucci","/images/profile/logo/gucci_logo.jpg","/images/flags/it.png",NA,NA,NA,NA
+"182","159","China Minsheng Bank","/images/profile/logo/china_minsheng_bank.png","/images/flags/cn.png",NA,NA,NA,NA
+"183","186","LIDL","/images/profile/logo/lidl_1.jpg","/images/flags/de.png",NA,NA,NA,NA
+"184","149","Mitsui Group","/images/profile/logo/mitsuico.png","/images/flags/jp.png",NA,NA,NA,NA
+"185","274","3M","/images/profile/logo/3m.jpg","/images/flags/us.png",NA,NA,NA,NA
+"186","270","Optum","/images/profile/logo/optum.png","/images/flags/us.png",NA,NA,NA,NA
+"187","188","7-Eleven","/images/profile/logo/7_eleven_2.png","/images/flags/jp.png",NA,NA,NA,NA
+"188","335","Nokia","/images/profile/logo/nokia.jpg","/images/flags/fi.png",NA,NA,NA,NA
+"189","134","ENGIE","/images/profile/logo/engielogo3.png","/images/flags/fr.png",NA,NA,NA,NA
+"190",NA,"HPE (IT Services)","/images/profile/logo/hpe_2.jpg","/images/flags/us.png",NA,NA,NA,NA
+"191","193","Lockheed Martin","/images/profile/logo/lm_logo_cms.jpg","/images/flags/us.png",NA,NA,NA,NA
+"192","176","Commonwealth Bank","/images/profile/logo/commonwealth_bank.jpg","/images/flags/au.png",NA,NA,NA,NA
+"193","180","ANZ","/images/profile/logo/anz_logo3.png","/images/flags/au.png",NA,NA,NA,NA
+"194","222","ABB","/images/profile/logo/abb_cms.jpg","/images/flags/ch.png",NA,NA,NA,NA
+"195","302","Adobe","/images/profile/logo/adobe_systems_logo_002_cms.jpg","/images/flags/us.png",NA,NA,NA,NA
+"196","195","Statoil (Equinor)","/images/profile/logo/statoil_logo_horizontal_468.png","/images/flags/no.png",NA,NA,NA,NA
+"197","189","Bank of Montreal","/images/profile/logo/bank_of_montreal.jpg","/images/flags/ca.png",NA,NA,NA,NA
+"198","228","Société Générale","/images/profile/logo/soc_gen.jpg","/images/flags/fr.png",NA,NA,NA,NA
+"199","196","eBay","/images/profile/logo/ebay4.png","/images/flags/us.png",NA,NA,NA,NA
+"200","229","MetLife","/images/profile/logo/metlifelogo.png","/images/flags/us.png",NA,NA,NA,NA
+"201","142","UNIQLO","/images/profile/logo/uniqlo_logo_cms.jpg","/images/flags/jp.png",NA,NA,NA,NA
+"202","169","Subway","/images/profile/logo/subway_logo_cms.jpg","/images/flags/us.png",NA,NA,NA,NA
+"203","179","Subaru","/images/profile/logo/subaru_logo_cms.jpg","/images/flags/jp.png",NA,NA,NA,NA
+"204","256","KFC","/images/profile/logo/kfc_logo_cms.jpg","/images/flags/us.png",NA,NA,NA,NA
+"205","219","Itaú","/images/profile/logo/itau_logo.png","/images/flags/br.png",NA,NA,NA,NA
+"206","261","Michelin","/images/profile/logo/michelin_logo1_cms.jpg","/images/flags/fr.png",NA,NA,NA,NA
+"207","166","Medtronic","/images/profile/logo/medtronic2.png","/images/flags/us.png",NA,NA,NA,NA
+"208","217","Rogers","/images/profile/logo/rogers_logo_cms.jpg","/images/flags/ca.png",NA,NA,NA,NA
+"209","183","Union Pacific","/images/profile/logo/union_pacific.jpg","/images/flags/us.png",NA,NA,NA,NA
+"210","167","Dalian Wanda Commercial Properties","/images/profile/logo/dalianwanda.png","/images/flags/cn.png",NA,NA,NA,NA
+"211","349","Nintendo","/images/profile/logo/nintendo.jpg","/images/flags/jp.png",NA,NA,NA,NA
+"212","249","TSMC","/images/profile/logo/tsmc4.png","/images/flags/tw.png",NA,NA,NA,NA
+"213","199","Morgan Stanley","/images/profile/logo/2000px_morgan_stanley_logo_1_cms.jpg","/images/flags/us.png",NA,NA,NA,NA
+"214","390","Yanghe","/images/profile/logo/yanghe1.png","/images/flags/cn.png",NA,NA,NA,NA
+"215","163","Cognizant","/images/profile/logo/cognizant.jpg","/images/flags/us.png",NA,NA,NA,NA
+"216","292","Etisalat","/images/profile/logo/etisalat_logo_cms.jpg","/images/flags/ae.png",NA,NA,NA,NA
+"217","236","TELUS","/images/profile/logo/telus_logo_cms.jpg","/images/flags/ca.png",NA,NA,NA,NA
+"218","212","U.S. Bank","/images/profile/logo/usbank3.png","/images/flags/us.png",NA,NA,NA,NA
+"219","245","Allstate","/images/profile/logo/allstate_logo.png","/images/flags/us.png",NA,NA,NA,NA
+"220","225","Red Bull","/images/profile/logo/redbulllogo.png","/images/flags/at.png",NA,NA,NA,NA
+"221","197","Lego","/images/profile/logo/lego.jpg","/images/flags/dk.png",NA,NA,NA,NA
+"222","211","Gillette","/images/profile/logo/gillette_logo_cms.jpg","/images/flags/us.png",NA,NA,NA,NA
+"223","264","Western Digital","/images/profile/logo/westerndigitallogo.png","/images/flags/us.png",NA,NA,NA,NA
+"224","161","Sam's Club","/images/profile/logo/samsclub.png","/images/flags/us.png",NA,NA,NA,NA
+"225","158","Sprint","/images/profile/logo/sprint.jpg","/images/flags/us.png",NA,NA,NA,NA
+"226","231","BASF","/images/profile/logo/basf_logo_bw.svg.png","/images/flags/de.png",NA,NA,NA,NA
+"227","230","Bud Light","/images/profile/logo/budlightlogo.png","/images/flags/us.png",NA,NA,NA,NA
+"228","168","PEMEX","/images/profile/logo/pemex_logo.jpg","/images/flags/mx.png",NA,NA,NA,NA
+"229","244","3 Mobile","/images/profile/logo/3_mobile_3.png","/images/flags/gb.png",NA,NA,NA,NA
+"230","255","Yahoo","/images/profile/logo/yahoo.jpg","/images/flags/us.png",NA,NA,NA,NA
+"231","297","PICC","/images/profile/logo/picc3.png","/images/flags/cn.png",NA,NA,NA,NA
+"232","206","Zurich","/images/profile/logo/zurich_logo_cms.jpg","/images/flags/ch.png",NA,NA,NA,NA
+"233","232","Vinci","/images/profile/logo/vinci_1_cms.jpg","/images/flags/fr.png",NA,NA,NA,NA
+"234","241","Woolworths Group","/images/profile/logo/woolworthau22.jpg","/images/flags/au.png",NA,NA,NA,NA
+"235","204","Vanke","/images/profile/logo/vanke_logo_cms.jpg","/images/flags/cn.png",NA,NA,NA,NA
+"236","247","CIBC","/images/profile/logo/cibc_cms.jpg","/images/flags/ca.png",NA,NA,NA,NA
+"237","322","Valero","/images/profile/logo/valero2.png","/images/flags/us.png",NA,NA,NA,NA
+"238","276","Budweiser","/images/profile/logo/bud_1.jpg","/images/flags/us.png",NA,NA,NA,NA
+"239","242","CenturyLink","/images/profile/logo/century_link.jpg","/images/flags/us.png",NA,NA,NA,NA
+"240","216","Honeywell","/images/profile/logo/honeywell.jpg","/images/flags/us.png",NA,NA,NA,NA
+"241","160","Nippon Life Insurance","/images/profile/logo/nissay2.png","/images/flags/jp.png",NA,NA,NA,NA
+"242","209","United Airlines","/images/profile/logo/united.jpg","/images/flags/us.png",NA,NA,NA,NA
+"243","202","Bridgestone","/images/profile/logo/bridgestone_logo.png","/images/flags/jp.png",NA,NA,NA,NA
+"244","405","Midea","/images/profile/logo/midea_2.jpg","/images/flags/cn.png",NA,NA,NA,NA
+"245","301","Cigna","/images/profile/logo/cignalogo.png","/images/flags/us.png",NA,NA,NA,NA
+"246","205"," Sumitomo Mitsui Financial Group","/images/profile/logo/smfg.png","/images/flags/jp.png",NA,NA,NA,NA
+"247","208","Telenor","/images/profile/logo/telenorgroup.png","/images/flags/no.png",NA,NA,NA,NA
+"248","220","Qualcomm","/images/profile/logo/qualcomm_logo_cms.jpg","/images/flags/us.png",NA,NA,NA,NA
+"249",NA,"Haval","/images/profile/logo/haval.png","/images/flags/cn.png",NA,NA,NA,NA
+"250","312","Brookfield","/images/profile/logo/brookfield.jpg","/images/flags/ca.png",NA,NA,NA,NA
+"251","259","Credit Suisse","/images/profile/logo/credit_suisse_logo.png","/images/flags/ch.png",NA,NA,NA,NA
+"252","191","Airtel","/images/profile/logo/airtellogo.png","/images/flags/in.png",NA,NA,NA,NA
+"253","251","STC","/images/profile/logo/stc.jpg","/images/flags/sa.png",NA,NA,NA,NA
+"254","214","CRRC","/images/profile/logo/crrc.png","/images/flags/cn.png",NA,NA,NA,NA
+"255","252","Neutrogena","/images/profile/logo/neutrogena.jpg","/images/flags/us.png",NA,NA,NA,NA
+"256","262","Coles","/images/profile/logo/coles.png","/images/flags/au.png",NA,NA,NA,NA
+"257","324","GEICO","/images/profile/logo/geico_logo_cms.jpg","/images/flags/us.png",NA,NA,NA,NA
+"258","350","Dow","/images/profile/logo/dow.jpg","/images/flags/us.png",NA,NA,NA,NA
+"259","257","Ferrari","/images/profile/logo/ferrari_logo_2.jpg","/images/flags/it.png",NA,NA,NA,NA
+"260","239","National Australia Bank","/images/profile/logo/nab_logo.png","/images/flags/au.png",NA,NA,NA,NA
+"261","277","Publix","/images/profile/logo/publix.jpg","/images/flags/us.png",NA,NA,NA,NA
+"262","300","DBS","/images/profile/logo/dbs.jpg","/images/flags/sg.png",NA,NA,NA,NA
+"263",NA,"NatWest","/images/profile/logo/natwest4.png","/images/flags/gb.png",NA,NA,NA,NA
+"264","224","Schlumberger","/images/profile/logo/schlumberger.jpg","/images/flags/us.png",NA,NA,NA,NA
+"265","298","Generali","/images/profile/logo/generali_2.jpg","/images/flags/it.png",NA,NA,NA,NA
+"266","319","Fresenius","/images/profile/logo/fresenius_bd.png","/images/flags/de.png",NA,NA,NA,NA
+"267","226","Nivea","/images/profile/logo/nivea3.png","/images/flags/de.png",NA,NA,NA,NA
+"268","260","Roche","/images/profile/logo/roche.jpg","/images/flags/ch.png",NA,NA,NA,NA
+"269","203","ASDA","/images/profile/logo/asda_cms.jpg","/images/flags/gb.png",NA,NA,NA,NA
+"270","243","Lloyds","/images/profile/logo/lloyds4.png","/images/flags/gb.png",NA,NA,NA,NA
+"271","288","Prudential (US)","/images/profile/logo/prudential_us.jpg","/images/flags/us.png",NA,NA,NA,NA
+"272","269","China Everbright Bank","/images/profile/logo/cebbank.png","/images/flags/cn.png",NA,NA,NA,NA
+"273","254","PNC","/images/profile/logo/pnc.jpg","/images/flags/us.png",NA,NA,NA,NA
+"274","215","Rolex","/images/profile/logo/rolex_1cms.jpg","/images/flags/ch.png",NA,NA,NA,NA
+"275","285","Nordea","/images/profile/logo/nordea_logo.png","/images/flags/se.png",NA,NA,NA,NA
+"276","235","Pampers","/images/profile/logo/pampers.jpg","/images/flags/us.png",NA,NA,NA,NA
+"277","171","Hilton","/images/profile/logo/hilton_icon_image_cms.jpg","/images/flags/us.png",NA,NA,NA,NA
+"278","268","Activision Blizzard","/images/profile/logo/activisionbl.jpg","/images/flags/us.png",NA,NA,NA,NA
+"279","227","Swisscom","/images/profile/logo/swisscom2.png","/images/flags/ch.png",NA,NA,NA,NA
+"280","362","Coach","/images/profile/logo/coach_logo_cms.jpg","/images/flags/us.png",NA,NA,NA,NA
+"281","234","Marubeni","/images/profile/logo/marubeni_logo_cms.jpg","/images/flags/jp.png",NA,NA,NA,NA
+"282","246","Victoria's Secret","/images/profile/logo/victora_s_secret_bd.png","/images/flags/us.png",NA,NA,NA,NA
+"283","389","Yili","/images/profile/logo/yili.jpg","/images/flags/cn.png",NA,NA,NA,NA
+"284","331","Deutsche Bank","/images/profile/logo/deutschebank3.png","/images/flags/de.png",NA,NA,NA,NA
+"285","313","Heineken","/images/profile/logo/heineken4.png","/images/flags/nl.png",NA,NA,NA,NA
+"286","299","Claro","/images/profile/logo/claro_logo_cms.jpg","/images/flags/mx.png",NA,NA,NA,NA
+"287","250","Infosys","/images/profile/logo/infosys3.png","/images/flags/in.png",NA,NA,NA,NA
+"288",NA,"DXC Technology","/images/profile/logo/dxc_logo_cms.jpg","/images/flags/us.png",NA,NA,NA,NA
+"289","240","Pall Mall","/images/profile/logo/pall_mall_logo_cms.jpg","/images/flags/gb.png",NA,NA,NA,NA
+"290","295","L&M","/images/profile/logo/l_m_logo_cms.jpg","/images/flags/us.png",NA,NA,NA,NA
+"291","465","Geely","/images/profile/logo/geelyauto.png","/images/flags/cn.png",NA,NA,NA,NA
+"292","221","LIC","/images/profile/logo/lic_logo.jpg","/images/flags/in.png",NA,NA,NA,NA
+"293","473","Playstation","/images/profile/logo/playstation22.jpg","/images/flags/jp.png",NA,NA,NA,NA
+"294","290","Merrill Lynch","/images/profile/logo/merill_lynch4.png","/images/flags/us.png",NA,NA,NA,NA
+"295","281","CAMEL","/images/profile/logo/camel_1.jpg","/images/flags/us.png",NA,NA,NA,NA
+"296","287","T.J. Maxx","/images/profile/logo/tj_maxx.jpg","/images/flags/us.png",NA,NA,NA,NA
+"297","388","Chanel","/images/profile/logo/chanel3.png","/images/flags/fr.png",NA,NA,NA,NA
+"298","344","Broadcom","/images/profile/logo/broadcom.jpg","/images/flags/us.png",NA,NA,NA,NA
+"299","253","Daiwa House Industry","/images/profile/logo/daiwa_house_industry.jpg","/images/flags/jp.png",NA,NA,NA,NA
+"300","278","Westpac","/images/profile/logo/westpac2.png","/images/flags/au.png",NA,NA,NA,NA
+"301","280","SFR","/images/profile/logo/sfr5.png","/images/flags/fr.png",NA,NA,NA,NA
+"302","304","MCC","/images/profile/logo/metallurgical_corp_of_china.jpg","/images/flags/cn.png",NA,NA,NA,NA
+"303","411","Crédit Agricole","/images/profile/logo/credit_agricole3.png","/images/flags/fr.png",NA,NA,NA,NA
+"304","271","Purina","/images/profile/logo/daew_1.jpg","/images/flags/us.png",NA,NA,NA,NA
+"305","237","Mizuho","/images/profile/logo/mizuho_logo_cms.jpg","/images/flags/jp.png",NA,NA,NA,NA
+"306","318","Bouygues","/images/profile/logo/bouygues_1_cms.jpg","/images/flags/fr.png",NA,NA,NA,NA
+"307","266","Rabobank","/images/profile/logo/rabobank.jpg","/images/flags/nl.png",NA,NA,NA,NA
+"308",NA,"Tesla Motors","/images/profile/logo/tesla2.jpg","/images/flags/us.png",NA,NA,NA,NA
+"309","316","Travelers","/images/profile/logo/travelers.jpg","/images/flags/us.png",NA,NA,NA,NA
+"310","332","Tyson","/images/profile/logo/tyson.jpg","/images/flags/us.png",NA,NA,NA,NA
+"311","348","Standard Chartered","/images/profile/logo/s._charteredcms.jpg","/images/flags/gb.png",NA,NA,NA,NA
+"312","275","BBC","/images/profile/logo/bbc.jpg","/images/flags/gb.png",NA,NA,NA,NA
+"313","286","Bradesco","/images/profile/logo/bradesco_logo_cms.jpg","/images/flags/br.png",NA,NA,NA,NA
+"314","356","Bayer","/images/profile/logo/bayer_logo_cms.jpg","/images/flags/de.png",NA,NA,NA,NA
+"315","339","Gazprom","/images/profile/logo/gazprom.jpg","/images/flags/ru.png",NA,NA,NA,NA
+"316","467","Airbnb","/images/profile/logo/airbnb.jpg","/images/flags/us.png",NA,NA,NA,NA
+"317","289","Salesforce","/images/profile/logo/salesforce2.png","/images/flags/us.png",NA,NA,NA,NA
+"318","279","Dollar General","/images/profile/logo/dollargeneral2.png","/images/flags/us.png",NA,NA,NA,NA
+"319","469","Chunghwa Telecom","/images/profile/logo/chunghwa_tel.png","/images/flags/cn.png",NA,NA,NA,NA
+"320","309","Newport","/images/profile/logo/images_9.jpg","/images/flags/us.png",NA,NA,NA,NA
+"321","173","Poly Real Estate","/images/profile/logo/gzpoly.png","/images/flags/cn.png",NA,NA,NA,NA
+"322","327","Marriott","/images/profile/logo/marriott_icon_image_cms.jpg","/images/flags/us.png",NA,NA,NA,NA
+"323","213","Kellogg's","/images/profile/logo/kelloggs.jpg","/images/flags/us.png",NA,NA,NA,NA
+"324","320","Sainsbury's","/images/profile/logo/sainsburys.jpg","/images/flags/gb.png",NA,NA,NA,NA
+"325","294","AIG","/images/profile/logo/aig_logo.jpg","/images/flags/us.png",NA,NA,NA,NA
+"326","305","Enterprise","/images/profile/logo/enterprise.png","/images/flags/us.png",NA,NA,NA,NA
+"327","367","Saint-Gobain","/images/profile/logo/saintgobainlogo.png","/images/flags/fr.png",NA,NA,NA,NA
+"328","375","ESPN","/images/profile/logo/espn.jpg","/images/flags/us.png",NA,NA,NA,NA
+"329","263","Emirates","/images/profile/logo/emirates2.png","/images/flags/ae.png",NA,NA,NA,NA
+"330","303","Nescafé","/images/profile/logo/nescafe3.png","/images/flags/ch.png",NA,NA,NA,NA
+"331",NA,"Guerlain","/images/profile/logo/guerlain_2_logo_cms.jpg","/images/flags/fr.png",NA,NA,NA,NA
+"332","267","Southwest Airlines","/images/profile/logo/southwest1_logo_cms.jpg","/images/flags/us.png",NA,NA,NA,NA
+"333","329","Thomson Reuters","/images/profile/logo/reuters_logo_cms.jpg","/images/flags/ca.png",NA,NA,NA,NA
+"334","293","State Bank of India","/images/profile/logo/sbi.jpg","/images/flags/in.png",NA,NA,NA,NA
+"335","321","KT","/images/profile/logo/kt.jpg","/images/flags/kr.png",NA,NA,NA,NA
+"336","272","Mobil","/images/profile/logo/mobil.jpg","/images/flags/us.png",NA,NA,NA,NA
+"337","311","CNOOC","/images/profile/logo/cnoocltd.png","/images/flags/cn.png",NA,NA,NA,NA
+"338","377","Caterpillar","/images/profile/logo/cat_caterpilar.png","/images/flags/us.png",NA,NA,NA,NA
+"339","248","Kroger","/images/profile/logo/kroger2.png","/images/flags/us.png",NA,NA,NA,NA
+"340",NA,"SK Hynix","/images/profile/logo/hynix.jpg","/images/flags/kr.png",NA,NA,NA,NA
+"341","386","Telkom Indonesia","/images/profile/logo/telkom_indonesia_logo_cms.jpg","/images/flags/id.png",NA,NA,NA,NA
+"342","365","Intesa Sanpaolo Group","/images/profile/logo/intesa_sanpaolo_group_logo_cms11.jpg","/images/flags/it.png",NA,NA,NA,NA
+"343","317","Petrobras","/images/profile/logo/petrobras.jpg","/images/flags/br.png",NA,NA,NA,NA
+"344","310","Ross Dress For Less","/images/profile/logo/ross.jpg","/images/flags/us.png",NA,NA,NA,NA
+"345","423","BHP","/images/profile/logo/bhp_cms.jpg","/images/flags/gb.png",NA,NA,NA,NA
+"346","282","Chubb","/images/profile/logo/chubb2.png","/images/flags/us.png",NA,NA,NA,NA
+"347","306","20th Century Fox","/images/profile/logo/20th_century_fox_logo.jpg","/images/flags/us.png",NA,NA,NA,NA
+"348","330","Clinique","/images/profile/logo/clinique_logo_cms.jpg","/images/flags/us.png",NA,NA,NA,NA
+"349","383","Korea Electric Power Corporation","/images/profile/logo/kepco2.png","/images/flags/kr.png",NA,NA,NA,NA
+"350","346","Pantene","/images/profile/logo/pantene2.png","/images/flags/us.png",NA,NA,NA,NA
+"351","409","Tim Hortons","/images/profile/logo/tim_hortons_cms.jpg","/images/flags/ca.png",NA,NA,NA,NA
+"352","385","McKinsey","/images/profile/logo/mckinseyandco.png","/images/flags/us.png",NA,NA,NA,NA
+"353","328","Chow Tai Fook","/images/profile/logo/chow.jpg","/images/flags/cn.png",NA,NA,NA,NA
+"354","353","Huggies","/images/profile/logo/huggies2.png","/images/flags/us.png",NA,NA,NA,NA
+"355","373","Aviva","/images/profile/logo/aviva.jpg","/images/flags/gb.png",NA,NA,NA,NA
+"356","366","Gatorade","/images/profile/logo/gatorade_sponsor_cms.jpg","/images/flags/us.png",NA,NA,NA,NA
+"357","376","PTT","/images/profile/logo/ptt_thailand.png","/images/flags/th.png",NA,NA,NA,NA
+"358","336","Sysco","/images/profile/logo/sysco.jpg","/images/flags/us.png",NA,NA,NA,NA
+"359","296","Macy's","/images/profile/logo/2000px_macys_logo_cms.jpg","/images/flags/us.png",NA,NA,NA,NA
+"360","283","Kraft","/images/profile/logo/kraft_logo.jpg","/images/flags/us.png",NA,NA,NA,NA
+"361","337","McLane Company","/images/profile/logo/untitled.jpg","/images/flags/us.png",NA,NA,NA,NA
+"362","360","Colgate","/images/profile/logo/colgatedental.png","/images/flags/us.png",NA,NA,NA,NA
+"363","369","Lukoil","/images/profile/logo/lukoiloilcompany.png","/images/flags/ru.png",NA,NA,NA,NA
+"364","342","Dove","/images/profile/logo/dove_2014.jpg","/images/flags/gb.png",NA,NA,NA,NA
+"365","421","Domino's Pizza","/images/profile/logo/dominospizza.png","/images/flags/us.png",NA,NA,NA,NA
+"366","417","Poste Italiane","/images/profile/logo/posteitaliane_cms.jpg","/images/flags/it.png",NA,NA,NA,NA
+"367","495","Randstad","/images/profile/logo/randstad.jpg","/images/flags/nl.png",NA,NA,NA,NA
+"368","404","Wrigley's","/images/profile/logo/wrigley.jpg","/images/flags/us.png",NA,NA,NA,NA
+"369","476","Enbridge","/images/profile/logo/enbridge2.png","/images/flags/ca.png",NA,NA,NA,NA
+"370",NA,"Haier","/images/profile/logo/haier.jpg","/images/flags/cn.png",NA,NA,NA,NA
+"371","480","Continental","/images/profile/logo/continental2.png","/images/flags/de.png",NA,NA,NA,NA
+"372","393","Thermo Fisher Scientific","/images/profile/logo/thermo_fisher.jpg","/images/flags/us.png",NA,NA,NA,NA
+"373",NA,"Longfor Properties","/images/profile/logo/longfor2.png","/images/flags/cn.png",NA,NA,NA,NA
+"374","258","Esso","/images/profile/logo/esso_logo_cms.jpg","/images/flags/us.png",NA,NA,NA,NA
+"375","434","Schneider Electric","/images/profile/logo/schneider_electric.jpg","/images/flags/fr.png",NA,NA,NA,NA
+"376","291","Exxon","/images/profile/logo/exxon_logo_cms.jpg","/images/flags/us.png",NA,NA,NA,NA
+"377","395","Tiffany & Co.","/images/profile/logo/tiffany_bd.png","/images/flags/us.png",NA,NA,NA,NA
+"378","379","EE","/images/profile/logo/ee_logo_cms.jpg","/images/flags/gb.png",NA,NA,NA,NA
+"379","325","Garnier","/images/profile/logo/garnier3.png","/images/flags/fr.png",NA,NA,NA,NA
+"380","334","E.Leclerc","/images/profile/logo/e_leclerc.jpg","/images/flags/fr.png",NA,NA,NA,NA
+"381","374","General Dynamics","/images/profile/logo/daew_10.jpg","/images/flags/us.png",NA,NA,NA,NA
+"382","440","Fubon Life","/images/profile/logo/fubon_life_logo_cms.jpg","/images/flags/tw.png",NA,NA,NA,NA
+"383","441","Progressive","/images/profile/logo/progressive.jpg","/images/flags/us.png",NA,NA,NA,NA
+"384","343","ADP","/images/profile/logo/adp.jpg","/images/flags/us.png",NA,NA,NA,NA
+"385","333","Kia Motors","/images/profile/logo/kiamotors.png","/images/flags/kr.png",NA,NA,NA,NA
+"386","347","ConocoPhillips","/images/profile/logo/conocophilips.jpg","/images/flags/us.png",NA,NA,NA,NA
+"387","427","KB Financial Group","/images/profile/logo/kbfg2.png","/images/flags/kr.png",NA,NA,NA,NA
+"388","397","John Deere","/images/profile/logo/john_deere.jpg","/images/flags/us.png",NA,NA,NA,NA
+"389","400","Burberry","/images/profile/logo/burberry2.png","/images/flags/gb.png",NA,NA,NA,NA
+"390","372","HCL Technologies","/images/profile/logo/hcl_logo.jpg","/images/flags/in.png",NA,NA,NA,NA
+"391","181","Toshiba","/images/profile/logo/toshiba.jpg","/images/flags/jp.png",NA,NA,NA,NA
+"392","351","Swiss Re","/images/profile/logo/swiss_re3.png","/images/flags/ch.png",NA,NA,NA,NA
+"393","326","Ericsson","/images/profile/logo/ericsson_1.jpg","/images/flags/se.png",NA,NA,NA,NA
+"394","406","Capgemini","/images/profile/logo/capgemini_cms.jpg","/images/flags/fr.png",NA,NA,NA,NA
+"395",NA,"CCCC","/images/profile/logo/cccc_logo.png","/images/flags/cn.png",NA,NA,NA,NA
+"396","418","Discover","/images/profile/logo/discover1.png","/images/flags/us.png",NA,NA,NA,NA
+"397","410","Northrop Grumman","/images/profile/logo/northrop_grumman.jpg","/images/flags/us.png",NA,NA,NA,NA
+"398","488","China Cinda-H","/images/profile/logo/china_cinda.jpg","/images/flags/cn.png",NA,NA,NA,NA
+"399","486","Sodexo","/images/profile/logo/sodexo.jpg","/images/flags/fr.png",NA,NA,NA,NA
+"400","463","Texas Instruments","/images/profile/logo/texas_instruments2.png","/images/flags/us.png",NA,NA,NA,NA
+"401","448","Prudential (UK)","/images/profile/logo/prudential_cms.jpg","/images/flags/gb.png",NA,NA,NA,NA
+"402","392","Estée Lauder","/images/profile/logo/estee.png","/images/flags/us.png",NA,NA,NA,NA
+"403","425","Canadian Natural","/images/profile/logo/canadian_natural_cms.jpg","/images/flags/ca.png",NA,NA,NA,NA
+"404","422","Electronic Arts (EA)","/images/profile/logo/ea_logo.jpg","/images/flags/us.png",NA,NA,NA,NA
+"405","381","Sprite","/images/profile/logo/sprite2.png","/images/flags/us.png",NA,NA,NA,NA
+"406","436","CN","/images/profile/logo/cn1_cms.jpg","/images/flags/ca.png",NA,NA,NA,NA
+"407","431","Suning","/images/profile/logo/suning.com_logo_logotype_cms_.jpg","/images/flags/cn.png",NA,NA,NA,NA
+"408","428","Wolseley","/images/profile/logo/wolseley3.png","/images/flags/us.png",NA,NA,NA,NA
+"409","265","Lotte Group","/images/profile/logo/lottegroup.png","/images/flags/kr.png",NA,NA,NA,NA
+"410","380","Unilever","/images/profile/logo/unilever.jpg","/images/flags/nl.png",NA,NA,NA,NA
+"411","387","Hikvision","/images/profile/logo/hikvision.jpg","/images/flags/cn.png",NA,NA,NA,NA
+"412","453","Denso","/images/profile/logo/denso.jpg","/images/flags/jp.png",NA,NA,NA,NA
+"413",NA,"Sherwin-Williams","/images/profile/logo/sherwin_williams_bd.png","/images/flags/us.png",NA,NA,NA,NA
+"414","484","Nationwide Building Society","/images/profile/logo/nationwide5.png","/images/flags/gb.png",NA,NA,NA,NA
+"415",NA,"Safran","/images/profile/logo/logo_safran_rvb_002_.jpg","/images/flags/fr.png",NA,NA,NA,NA
+"416","462","Crédit Mutuel","/images/profile/logo/creditmutuel1.png","/images/flags/fr.png",NA,NA,NA,NA
+"417","368","Johnnie Walker","/images/profile/logo/johnniewalkerlogo.png","/images/flags/gb.png",NA,NA,NA,NA
+"418","359","Telia Company","/images/profile/logo/telia1.png","/images/flags/se.png",NA,NA,NA,NA
+"419","352","Suzuki","/images/profile/logo/suzukilogo.png","/images/flags/jp.png",NA,NA,NA,NA
+"420",NA,"Deutsche Post","/images/profile/logo/deutsche_post.jpg","/images/flags/de.png",NA,NA,NA,NA
+"421","345","Nordstrom","/images/profile/logo/nordstrom2.jpg","/images/flags/us.png",NA,NA,NA,NA
+"422","403","LinkedIn","/images/profile/logo/linkedin.jpg","/images/flags/us.png",NA,NA,NA,NA
+"423","414","Express Scripts","/images/profile/logo/logo_express_scripts_cms.jpg","/images/flags/us.png",NA,NA,NA,NA
+"424","447","HBO","/images/profile/logo/hbo.jpg","/images/flags/us.png",NA,NA,NA,NA
+"425","433","QNB","/images/profile/logo/qnb_cms.jpg","/images/flags/qa.png",NA,NA,NA,NA
+"426","444","KBC","/images/profile/logo/kbc_logo_cms.jpg","/images/flags/be.png",NA,NA,NA,NA
+"427","363","Indian Oil","/images/profile/logo/indianoil2.png","/images/flags/in.png",NA,NA,NA,NA
+"428","398","Clarins","/images/profile/logo/clarins3.png","/images/flags/fr.png",NA,NA,NA,NA
+"429","490","Shiseido","/images/profile/logo/shiseido2.png","/images/flags/jp.png",NA,NA,NA,NA
+"430","338","Kohl's","/images/profile/logo/kohls_logo_black_cms.jpg","/images/flags/us.png",NA,NA,NA,NA
+"431","432","Emerson","/images/profile/logo/emerson.jpg","/images/flags/us.png",NA,NA,NA,NA
+"432","315","Banco do Brasil","/images/profile/logo/bancodobrasil_logo.png","/images/flags/br.png",NA,NA,NA,NA
+"433","471","Doosan (Group)","/images/profile/logo/doosan.jpg","/images/flags/kr.png",NA,NA,NA,NA
+"434",NA,"El Corte Ingles","/images/profile/logo/el_corte_ingles2.png","/images/flags/es.png",NA,NA,NA,NA
+"435",NA,"Cummins","/images/profile/logo/images_10.jpg","/images/flags/us.png",NA,NA,NA,NA
+"436","323","AutoZone","/images/profile/logo/daew_18.jpg","/images/flags/us.png",NA,NA,NA,NA
+"437","341","Pfizer","/images/profile/logo/pfizerlogoo.png","/images/flags/us.png",NA,NA,NA,NA
+"438","357","FIS","/images/profile/logo/fis.jpg","/images/flags/us.png",NA,NA,NA,NA
+"439","470","lenovo","/images/profile/logo/lenovo2.png","/images/flags/cn.png",NA,NA,NA,NA
+"440",NA,"Innogy","/images/profile/logo/innogy_logo.jpg","/images/flags/de.png",NA,NA,NA,NA
+"441","472","CJ Group","/images/profile/logo/cj_group.jpg","/images/flags/kr.png",NA,NA,NA,NA
+"442","464","China Southern Airlines","/images/profile/logo/china_southern_logo_cms.jpg","/images/flags/cn.png",NA,NA,NA,NA
+"443","483","Repsol","/images/profile/logo/repsol1.png","/images/flags/es.png",NA,NA,NA,NA
+"444",NA,"Micron Technology","/images/profile/logo/micron.jpg","/images/flags/us.png",NA,NA,NA,NA
+"445","340","Reliance Industries","/images/profile/logo/reliance_industries.jpg","/images/flags/in.png",NA,NA,NA,NA
+"446",NA,"Christian Dior","/images/profile/logo/dior1.png","/images/flags/fr.png",NA,NA,NA,NA
+"447","408","Carmax","/images/profile/logo/carmax_logo_cms.jpg","/images/flags/us.png",NA,NA,NA,NA
+"448","475","OCBC Bank","/images/profile/logo/ocbc.jpg","/images/flags/sg.png",NA,NA,NA,NA
+"449","371","Maybelline","/images/profile/logo/maybellinenewyork.png","/images/flags/fr.png",NA,NA,NA,NA
+"450",NA,"Gree","/images/profile/logo/gree.jpg","/images/flags/cn.png",NA,NA,NA,NA
+"451","430","CSX","/images/profile/logo/csx_transp_logo_cms.jpg","/images/flags/us.png",NA,NA,NA,NA
+"452","354","Fujitsu","/images/profile/logo/fujitsu_1.jpg","/images/flags/jp.png",NA,NA,NA,NA
+"453","438","Bloomberg","/images/profile/logo/bloomberg3.png","/images/flags/us.png",NA,NA,NA,NA
+"454","370","Polo Ralph Lauren","/images/profile/logo/polo23.jpg","/images/flags/us.png",NA,NA,NA,NA
+"455",NA,"Xiaomi","/images/profile/logo/xiaomi.jpg","/images/flags/cn.png",NA,NA,NA,NA
+"456","384","Aflac","/images/profile/logo/aflac.jpg","/images/flags/us.png",NA,NA,NA,NA
+"457",NA,"Optus","/images/profile/logo/optus1.png","/images/flags/au.png",NA,NA,NA,NA
+"458",NA,"Sun Hung Kai Properties","/images/profile/logo/sun_hung_kai_properties.jpg","/images/flags/hk.png",NA,NA,NA,NA
+"459","442","GS Group","/images/profile/logo/gs_group.jpg","/images/flags/kr.png",NA,NA,NA,NA
+"460",NA,"Nvidia","/images/profile/logo/nvidia.jpg","/images/flags/us.png",NA,NA,NA,NA
+"461","394","Isuzu","/images/profile/logo/isuzu_logo_cms.jpg","/images/flags/jp.png",NA,NA,NA,NA
+"462","458","Atos","/images/profile/logo/atos_cms.jpg","/images/flags/fr.png",NA,NA,NA,NA
+"463",NA,"Cathay Life Insurance Co","/images/profile/logo/cathay_life_insurance_bd.png","/images/flags/tw.png",NA,NA,NA,NA
+"464","358","Larsen & Toubro","/images/profile/logo/l_t_logo_cms1.jpg","/images/flags/in.png",NA,NA,NA,NA
+"465","446","Ecopetrol","/images/profile/logo/ecopetrol.jpg","/images/flags/co.png",NA,NA,NA,NA
+"466","468","China Resources Land","/images/profile/logo/china_resources_land.jpg","/images/flags/hk.png",NA,NA,NA,NA
+"467","443","Munich Re","/images/profile/logo/munich_re.jpg","/images/flags/de.png",NA,NA,NA,NA
+"468","407","Iberdrola","/images/profile/logo/iberdrola.jpg","/images/flags/es.png",NA,NA,NA,NA
+"469","466","Rolls-Royce","/images/profile/logo/rolls_royce_cms_2.jpg","/images/flags/gb.png",NA,NA,NA,NA
+"470","308","Heinz","/images/profile/logo/heinz2.png","/images/flags/us.png",NA,NA,NA,NA
+"471","413","S-26","/images/profile/logo/s_26_cms_1.jpg","/images/flags/ch.png",NA,NA,NA,NA
+"472","456","Prada","/images/profile/logo/daew_8.jpg","/images/flags/it.png",NA,NA,NA,NA
+"473","378","Winston","/images/profile/logo/winston.jpg","/images/flags/jp.png",NA,NA,NA,NA
+"474",NA,"Royal Caribbean Cruises","/images/profile/logo/royal_caribbean.jpg","/images/flags/us.png",NA,NA,NA,NA
+"475",NA,"Luzhou Laojiao","/images/profile/logo/luzhoulaojiao1.png","/images/flags/cn.png",NA,NA,NA,NA
+"476",NA,"China Eastern Airlines","/images/profile/logo/chinaeasternair.png","/images/flags/cn.png",NA,NA,NA,NA
+"477","439","Whole Foods","/images/profile/logo/wholefoodsmarket.png","/images/flags/us.png",NA,NA,NA,NA
+"478",NA,"Centene Corporation","/images/profile/logo/centene_done.jpg","/images/flags/us.png",NA,NA,NA,NA
+"479","396","Marks & Spencer","/images/profile/logo/mands.png","/images/flags/gb.png",NA,NA,NA,NA
+"480",NA,"Applied Materials","/images/profile/logo/applied_materials.jpg","/images/flags/us.png",NA,NA,NA,NA
+"481",NA,"UQ Communications","/images/profile/logo/uqcomms.png","/images/flags/jp.png",NA,NA,NA,NA
+"482",NA,"Zalando","/images/profile/logo/zalando_logo_cms.jpg","/images/flags/de.png",NA,NA,NA,NA
+"483","273","Under Armour","/images/profile/logo/underarmour.png","/images/flags/us.png",NA,NA,NA,NA
+"484",NA,"ABN Amro","/images/profile/logo/abnamro2.jpg","/images/flags/nl.png",NA,NA,NA,NA
+"485","479","UOB","/images/profile/logo/uob_logo2.png","/images/flags/sg.png",NA,NA,NA,NA
+"486",NA,"Adecco","/images/profile/logo/adecco_cms.jpg","/images/flags/ch.png",NA,NA,NA,NA
+"487",NA,"McCain","/images/profile/logo/mccain_cms.jpg","/images/flags/ca.png",NA,NA,NA,NA
+"488",NA,"Cerner Corp","/images/profile/logo/cerner.jpg","/images/flags/us.png",NA,NA,NA,NA
+"489","491","VMware","/images/profile/logo/vmware.jpg","/images/flags/us.png",NA,NA,NA,NA
+"490",NA,"SABIC","/images/profile/logo/sabic.jpg","/images/flags/sa.png",NA,NA,NA,NA
+"491","424","La Poste","/images/profile/logo/laposte1.png","/images/flags/fr.png",NA,NA,NA,NA
+"492",NA,"Brahma","/images/profile/logo/brahma_logo_cms.jpg","/images/flags/br.png",NA,NA,NA,NA
+"493","478","Daikin","/images/profile/logo/daikin.jpg","/images/flags/jp.png",NA,NA,NA,NA
+"494","401","Glencore","/images/profile/logo/glencore.jpg","/images/flags/ch.png",NA,NA,NA,NA
+"495","500","Acuvue","/images/profile/logo/acuvue2.png","/images/flags/us.png",NA,NA,NA,NA
+"496",NA,"Abbott","/images/profile/logo/abbottlabs2.jpg","/images/flags/us.png",NA,NA,NA,NA
+"497",NA,"BAE Systems","/images/profile/logo/bae_system_cms.jpg","/images/flags/gb.png",NA,NA,NA,NA
+"498",NA,"Raytheon","/images/profile/logo/ratheon_logo_cms.jpg","/images/flags/us.png",NA,NA,NA,NA
+"499","481","BlackRock","/images/profile/logo/blackrock.jpg","/images/flags/us.png",NA,NA,NA,NA
+"500","426","Shinhan Financial Group","/images/profile/logo/shinhanfg.png","/images/flags/kr.png",NA,NA,NA,NA

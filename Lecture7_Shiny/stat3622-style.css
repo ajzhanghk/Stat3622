@@ -1,0 +1,80 @@
+body {font-family: 'Bitter', 'Georgia', 'serif'; }
+
+.remark-slide-content {
+  background-image: url("StatSoft_bw.png");
+  background-size: 180px;
+  background-position: 0.5% 99.5%;
+  font-size:24px;}
+
+.remark-slide-content h1 {
+  font-size:40px;
+  color: #000; 
+  text-shadow: 0 0 3px #999;
+}
+.remark-slide-content h2 {
+  font-size:30px;
+}
+.remark-slide-content h3 {
+  font-size:24px;
+}
+  
+p {
+  line-height:1.5em;
+}
+ 
+
+ul ul {
+  margin: -10px 0;
+}
+
+ol ul {
+  margin: -10px 0;
+}
+
+ul ul li { 
+  line-height:1.5em;
+}
+
+ol ul li { 
+  line-height:1.5em;
+}
+
+.pull-left, .pull-right {
+    margin-top: -22px;
+}    
+
+.remark-code, .remark-inline-code {
+    font-size: 18px;
+}
+
+
+.smallkable th, td{
+    padding: 1px 10px;
+    font-size: 12px;
+}
+
+.title-slide h1 {
+  font-size: 30px;
+  font-weight: normal;
+  line-height: 1.5em;
+}
+
+.title-slide h2 {
+  font-size:40px;
+  line-height:1.5em;
+}
+
+.title-slide h3 {
+  font-size:24px;
+  font-weight: normal;
+  line-height:1.5em;
+}
+
+.inverse {
+  background-color: #ffffff;
+  text-shadow: 0 0 2px #999;
+}
+.inverse h1, .inverse h2, .inverse h3 {
+  color: #000;
+}
+ 
