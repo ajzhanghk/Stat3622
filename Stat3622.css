@@ -1,0 +1,38 @@
+
+.section .reveal .state-background {
+    background: white;}
+.section .reveal h1 {
+    font-size: 72px;
+    color: black;
+    position: relative;    
+    }
+.section .reveal p {
+    line-height: 60px;
+    color: black;
+    position: relative;
+    }
+.section .reveal strong {
+    color: black;
+    }
+    
+.reveal pre {
+    font-size: 0.45em;
+    width:95%;
+    overflow-x: auto;
+}
+
+.reveal blockquote {
+    background: #f9f9f9;
+    padding: 10px 20px 0px 20px;
+    margin: 10px;
+    font-size: 40px;
+    border:none;
+    border-left: 10px solid #ccc;
+}
+
+
+.footer {
+    color: black; background: white;
+    position: fixed; top: 95%;
+    text-align:left; width:100%;
+}
