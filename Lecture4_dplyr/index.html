@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title>STAT3622 Data Visualization (Lecture 4)</title>
     <meta charset="utf-8" />
@@ -203,11 +203,11 @@ summarise(group_by(tmp, Species), mean(Sepal.Size), mean(Petal.Size))
 
 ```
 ## # A tibble: 3 x 3
-##      Species `mean(Sepal.Size)` `mean(Petal.Size)`
-##       &lt;fctr&gt;              &lt;dbl&gt;              &lt;dbl&gt;
-## 1     setosa            17.2578             0.3656
-## 2 versicolor            16.5262             5.7204
-## 3  virginica            19.6846            11.2962
+##   Species    `mean(Sepal.Size)` `mean(Petal.Size)`
+##   &lt;fct&gt;                   &lt;dbl&gt;              &lt;dbl&gt;
+## 1 setosa                   17.3              0.366
+## 2 versicolor               16.5              5.72 
+## 3 virginica                19.7             11.3
 ```
 
 - Together with the group_by varaible 
@@ -222,9 +222,9 @@ summarise(group_by(tmp, Species), mean(Sepal.Size), mean(Petal.Size))
 
 ```
 ##      Species x1    x2
-## 1     setosa  A 0.798
-## 2 versicolor  B 0.273
-## 3  virginica  C 0.802
+## 1     setosa  A 0.801
+## 2 versicolor  B 0.541
+## 3  virginica  C 0.830
 ```
 
 ```r
@@ -233,12 +233,12 @@ head(merge(iris, tmp1, by = "Species"))
 
 ```
 ##   Species Sepal.Length Sepal.Width Petal.Length Petal.Width x1    x2
-## 1  setosa          5.1         3.5          1.4         0.2  A 0.798
-## 2  setosa          4.9         3.0          1.4         0.2  A 0.798
-## 3  setosa          4.7         3.2          1.3         0.2  A 0.798
-## 4  setosa          4.6         3.1          1.5         0.2  A 0.798
-## 5  setosa          5.0         3.6          1.4         0.2  A 0.798
-## 6  setosa          5.4         3.9          1.7         0.4  A 0.798
+## 1  setosa          5.1         3.5          1.4         0.2  A 0.801
+## 2  setosa          4.9         3.0          1.4         0.2  A 0.801
+## 3  setosa          4.7         3.2          1.3         0.2  A 0.801
+## 4  setosa          4.6         3.1          1.5         0.2  A 0.801
+## 5  setosa          5.0         3.6          1.4         0.2  A 0.801
+## 6  setosa          5.4         3.9          1.7         0.4  A 0.801
 ```
 
 - I personally prefer base:merge() than dplyr:left/right/inner/full/etc_join functions 
@@ -285,7 +285,7 @@ class: center, middle
 
 # Thank you! 
 
-Q&amp;A or Email ajzhang@hku.hk。
+Q&amp;A or Email ajzhang@umich.edu。
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -333,9 +333,25 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
-
-<script>
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
 (function() {
   var links = document.getElementsByTagName('a');
   for (var i = 0; i < links.length; i++) {
@@ -344,7 +360,23 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
   }
 })();
-</script>
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 slideshow._releaseMath = function(el) {

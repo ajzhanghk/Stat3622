@@ -374,7 +374,7 @@ class: center, middle
 
 # Thank you! 
 
-Q&A or Email ajzhang@hku.hk。
+Q&A or Email ajzhang@umich.edu。
 
 
 

@@ -299,7 +299,7 @@ class: center, middle
 
 # Thank you! 
 
-Q&A or Email ajzhang@hku.hk。
+Q&A or Email ajzhang@umich.edu。
 
 
 
@@ -330,14 +330,6 @@ dummy = dev.off()
 img %>% image_trim() %>% image_animate(fps = 1) %>% image_write("temp.gif")
 ```
  
-
----
-# Hong Kong Population Pyramids In Animation
-
-```{r fig.align="center", out.width = "400px", echo=FALSE}
-knitr::include_graphics("temp.gif")   
-``` 
-
 - Data source: HK population by age group and sex from [Census and
 Statistics Department](http://www.censtatd.gov.hk/hkstat/sub/sp150.jsp) 
 

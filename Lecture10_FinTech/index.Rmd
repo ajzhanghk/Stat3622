@@ -262,9 +262,10 @@ class: center, middle
 
 # Case Study 2: Financial Anomoly Detection
 
-a) Outlier Peeling Algorithm: [Refer to 2008-Slides](http://www.statsoft.org/wp-content/uploads/2016/09/PeelingAlgorithm2008.pdf)
 
-b) DataViz of Black September 2008: [Refer to 2016-Notes](http://www.statsoft.org/wp-content/uploads/2016/09/Lecture12_TimeSeriesViz.html)
+Link to [Black September 2008](../Lecture10_BlackSep2008/index.html)
+
+ 
 
 
 ---
@@ -272,7 +273,7 @@ class: center, middle
 
 # Thank you! 
 
-Q&A or Email ajzhang@hku.hk。
+Q&A or Email ajzhang@umich.edu。
 
 
 

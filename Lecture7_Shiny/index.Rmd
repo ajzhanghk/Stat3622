@@ -173,12 +173,14 @@ class: center, middle
 ## Switch to RStudio and RMarkdown
 
 
+Download [Lecture7_Shiny.Rmd](./Lecture7_Shiny.Rmd) with Runtime support. 
+
 ---
 class: center, middle
 
 # Thank you! 
 
-Q&A or Email ajzhang@hku.hk。
+Q&A or Email ajzhang@umich.edu。
 
 
 
